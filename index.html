@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Step 1 - استثمر في مستقبل طفلك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="logo.svg" alt="Step 1 Logo" class="logo-img">
+          <span class="logo-text">Step 1</span>
+        </div>
+        <nav class="nav">
+          <a href="#home" class="nav-link active" data-section="home">الرئيسية</a>
+          <a href="#counselors" class="nav-link" data-section="counselors">المدربين</a>
+          <a href="#store" class="nav-link" data-section="store">المتجر</a>
+          <button class="cta-btn" data-translate="start-journey" onclick="showSection('#registration')">ابدأ رحلتك
+            الآن</button>
+        </nav>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="ar">العربية</button>
+          <button class="lang-btn" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="fr">Français</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- Home Section -->
+    <section id="home" class="section active">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span data-translate="invest">استثمر في</span>
+              <span class="highlight" data-translate="future">مستقبل</span>
+              <br>
+              <span data-translate="your-child">طفلك</span>
+            </h1>
+            <p class="hero-description" data-translate="hero-desc">
+              مع Step 1، نقدم برامج تعليمية مبتكرة مخصصة للأطفال، وبرامج رعاية متكاملة لدعم نمو واحد تحت مظلة واحدة تجمع
+              بين خدمات تأهيل وتدريب طفلك
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" data-translate="start-now" onclick="showSection('#registration')">ابدأ
+                رحلتك الآن</button>
+              <button class="btn btn-secondary" data-translate="explore" onclick="showSection('#store')">اكتشف
+                المزيد</button>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="welcome-card">
+              <img src="logo.svg" alt="Welcome" class="card-logo">
+              <h2 class="card-title">Welcome</h2>
+              <h3 class="card-step">step 1</h3>
+              <p class="card-text">With you, specialists Amina and Fatima, for an enjoyable journey with the child,
+                starting with the first step.</p>
+              <p class="card-handle">@amina_amneal</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-section">
+          <h2 class="section-title" data-translate="about-us">من نحن؟</h2>
+          <p class="about-description" data-translate="about-desc-1">
+            1 Step هي منصة مبتكرة في مجال رعاية الأطفال، حيث نقدم استشارات طبية، تعليمية، وإجراءات طبية بسيطة، بالإضافة
+            إلى دراسات وإحصاءات علاجية تجريبية تساعد على فهم احتياجات كل طفل بشكل أفضل. نحن نؤمن بأن كل طفل يستحق بداية
+            قوية ومرتاحة في رحلته نحو مستقبل مشرق.
+          </p>
+          <p class="about-description" data-translate="about-desc-2">
+            نقدم استشارات متخصصة في التغذية والصحة، والإجراءات الطبية البسيطة مثل الفحوصات المنزلية والمتابعة الدورية مع
+            الفحص المنزلي والجسماني.
+          </p>
+
+          <div class="stats">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="stat-number">+500</div>
+              <div class="stat-label" data-translate="families">عائلة مستفيدة</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="stat-number">+50</div>
+              <div class="stat-label" data-translate="specialists">مدرب متخصص</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                    stroke="#7FA695" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="stat-number">4.9</div>
+              <div class="stat-label" data-translate="rating">تقييم المستخدم</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-section">
+          <h2 class="section-title" data-translate="featured">محتوى مميز</h2>
+          <div class="featured-grid">
+            <div class="featured-card">
+              <div class="featured-badge" data-translate="popular">الأكثر طلباً</div>
+              <div class="featured-content">
+                <div class="featured-number">75%</div>
+                <h3 class="featured-title" data-translate="featured-1-title">ماهى الخطوة الصحيحة؟</h3>
+                <p class="featured-desc" data-translate="featured-1-desc">أول واهم الأساسيات هي الوقوف على الذات</p>
+              </div>
+            </div>
+            <div class="featured-card">
+              <h3 class="featured-title" data-translate="featured-2-title">المهارات الأساسية للطفل</h3>
+              <p class="featured-desc" data-translate="featured-2-desc">أهم المهارات الأساسية التي يحتاجها طفلك في رحلة
+                نموه</p>
+            </div>
+            <div class="featured-card">
+              <div class="featured-discount">خصم 50%</div>
+              <h3 class="featured-title" data-translate="featured-3-title">احجز استشارة لمدة شهر</h3>
+              <p class="featured-desc" data-translate="featured-3-desc">استفد من عروضنا الشهرية والمتابعة مع أفضل
+                المتخصصين لدينا</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h2 class="cta-title" data-translate="cta-title">ابدأ رحلة التميز مع طفلك اليوم</h2>
+          <p class="cta-description" data-translate="cta-desc">انضم إلى العائلات التي وضعت ثقتها في برامجنا المبتكرة
+            لأطفالهم</p>
+          <div class="cta-buttons">
+            <button class="btn btn-primary" data-translate="start-now" onclick="showSection('#registration')">ابدأ رحلتك
+              الآن</button>
+            <button class="btn btn-outline" data-translate="contact-us" onclick="showSection('#contact')">تواصل مع
+              مستشار</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Counselors Section -->
+    <section id="counselors" class="section">
+      <div class="container">
+        <h1 class="page-title" data-translate="choose-counselor">اختر مدربك المثالى</h1>
+        <p class="page-subtitle" data-translate="counselor-subtitle">فريق من الخبراء والمدربين والمتخصصين في مشاكل
+          الأطفال للتدخل</p>
+
+        <div class="counselors-grid">
+          <div class="counselor-card">
+            <div class="counselor-rating">4.9 ★</div>
+            <img src="AsmaaMohamedAbdElsalam.jpg" alt="د. ليلى عمر" class="counselor-img">
+            <h3 class="counselor-name">اسماء محمد عبدالسلام</h3>
+            <p class="counselor-specialty">اختصاصية نفسية للأطفال</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 80 جلسة</span>
+              <span class="info-item">💰 200 ريال/جلسة</span>
+            </div>
+            <!-- <div class="counselor-tags">
+                <span class="tag">علم النفس</span>
+                <span class="tag">تعديل السلوك</span>
+                <span class="tag">التطور النفسي</span>
+              </div> -->
+
+            <!-- ------------------------------------------------------------------ -->
+            <!-- HTML -->
+            <div class="counselor-rating">4.9 ★</div>
+            <div class="rating-box">
+              <i class="star" data-value="1">★</i>
+              <i class="star" data-value="2">★</i>
+              <i class="star" data-value="3">★</i>
+              <i class="star" data-value="4">★</i>
+              <i class="star" data-value="5">★</i>
+            </div>
+
+            <!-- ------------------------------------------------------------------ -->
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+
+          <div class="counselor-card">
+            <div class="counselor-rating">4.8 ★</div>
+            <img
+              src="AliaaAbdullahYassinElSayed.jpg"
+              alt="أ. محمد حسين" class="counselor-img">
+            <h3 class="counselor-name">أ. محمد حسين</h3>
+            <p class="counselor-specialty">مدرب لتنمية المهارات</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 60 جلسة</span>
+              <span class="info-item">💰 180 ريال/جلسة</span>
+            </div>
+            <div class="counselor-tags">
+              <span class="tag">التوحد</span>
+              <span class="tag">تنمية المهارات</span>
+              <span class="tag">التواصل</span>
+            </div>
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+
+          <div class="counselor-card">
+            <div class="counselor-rating">4.9 ★</div>
+            <img
+              src="AlzhraaMahmoudElhdary.jpg"
+              alt="د. سارة أحمد" class="counselor-img">
+            <h3 class="counselor-name">د. سارة أحمد</h3>
+            <p class="counselor-specialty">متخصصة في التوحد السلوكي</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 90 جلسة</span>
+              <span class="info-item">💰 220 ريال/جلسة</span>
+            </div>
+            <div class="counselor-tags">
+              <span class="tag">السلوك السلوكي</span>
+              <span class="tag">التوحد السلوكي</span>
+              <span class="tag">تعديم الذات</span>
+            </div>
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+
+          <div class="counselor-card">
+            <div class="counselor-rating">4.8 ★</div>
+            <img
+              src="NadiaAtefMahmoud.jpg"
+              alt="أ. مجدي ابراهيم" class="counselor-img">
+            <h3 class="counselor-name">أ. مجدي ابراهيم</h3>
+            <p class="counselor-specialty">مدرب حركات وتوازن</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 70 جلسة</span>
+              <span class="info-item">💰 190 ريال/جلسة</span>
+            </div>
+            <div class="counselor-tags">
+              <span class="tag">التأهيل البدني</span>
+              <span class="tag">التوافق</span>
+              <span class="tag">التطوير الحركي</span>
+            </div>
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+
+          <div class="counselor-card">
+            <div class="counselor-rating">4.9 ★</div>
+            <img
+              src="MariamEslamMohamedAlsayad.jpg"
+              alt="د. نور الدين" class="counselor-img">
+            <h3 class="counselor-name">د. نور الدين</h3>
+            <p class="counselor-specialty">متخصص في التمييز النطقي</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 100 جلسة</span>
+              <span class="info-item">💰 250 ريال/جلسة</span>
+            </div>
+            <div class="counselor-tags">
+              <span class="tag">النطق</span>
+              <span class="tag">الاستماع</span>
+              <span class="tag">التواصل اللغوي</span>
+            </div>
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+
+          <div class="counselor-card">
+            <div class="counselor-rating">4.7 ★</div>
+            <img
+              src="SalmaYassen.jpg"
+              alt="أ. أحمد سعيد" class="counselor-img">
+            <h3 class="counselor-name">أ. أحمد سعيد</h3>
+            <p class="counselor-specialty">مدرب مهارات تعليمي</p>
+            <div class="counselor-info">
+              <span class="info-item">⏱️ 150 جلسة</span>
+              <span class="info-item">💰 200 ريال/جلسة</span>
+            </div>
+            <div class="counselor-tags">
+              <span class="tag">الصعوبة</span>
+              <span class="tag">الانتباه</span>
+              <span class="tag">المهارات الدراسية</span>
+            </div>
+            <button class="btn btn-counselor" data-translate="book-now" onclick="showSection('#registration')">احجز
+              موعد</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="section">
+      <div class="container">
+        <h1 class="page-title" data-translate="store">المتجر</h1>
+        <p class="page-subtitle" data-translate="store-subtitle">اكتر البرامج المناسب لحالتك واستثمر في مستقبلك</p>
+
+        <div class="store-grid">
+          <div class="product-card">
+            <div class="product-badge red" data-translate="limited">خصم محدود</div>
+            <img
+              src="https://images.pexels.com/photos/1720186/pexels-photo-1720186.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="جلسات التنمية الذهنية" class="product-img">
+            <h3 class="product-title" data-translate="product-1">جلسات التنمية الذهنية</h3>
+            <p class="product-desc" data-translate="product-1-desc">جلسات أسبوعية لتنمية القدرات الذهنية للطفل</p>
+            <div class="product-price">
+              <span class="price-new">350 ريال</span>
+              <span class="price-old">مشطوب</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="https://images.pexels.com/photos/159844/cellular-education-classroom-159844.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="دورة المهارات الاجتماعية" class="product-img">
+            <h3 class="product-title" data-translate="product-2">دورة المهارات الاجتماعية</h3>
+            <p class="product-desc" data-translate="product-2-desc">دورة تفاعلية لتطوير المهارات الاجتماعية لدى الطفل
+            </p>
+            <div class="product-price">
+              <span class="price-new">650 ريال</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+
+          <div class="product-card">
+            <div class="product-badge red" data-translate="limited">خصم محدود</div>
+            <img
+              src="https://images.pexels.com/photos/3662770/pexels-photo-3662770.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="برنامج الاستشارة الشهرية" class="product-img">
+            <h3 class="product-title" data-translate="product-3">برنامج الاستشارة الشهرية</h3>
+            <p class="product-desc" data-translate="product-3-desc">برنامج متكامل من الاستشارات مع أفضل المتخصصين</p>
+            <div class="product-price">
+              <span class="price-new">200 ريال</span>
+              <span class="price-old">مشطوب</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+
+          <div class="product-card">
+            <div class="product-badge green" data-translate="new">الأكثر شيوعاً</div>
+            <img
+              src="https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="باقة التميز الشاملة" class="product-img">
+            <h3 class="product-title" data-translate="product-4">باقة التميز الشاملة</h3>
+            <p class="product-desc" data-translate="product-4-desc">باقة شاملة تجمع كل البرامج التدريبية</p>
+            <div class="product-price">
+              <span class="price-new">1200 ريال</span>
+              <span class="price-old">مشطوب</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="https://images.pexels.com/photos/3806690/pexels-photo-3806690.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="دورة الابداع والخيال" class="product-img">
+            <h3 class="product-title" data-translate="product-5">دورة الابداع والخيال</h3>
+            <p class="product-desc" data-translate="product-5-desc">تنمية الجوانب الابداعية لدى طفلك عن طريق العمل</p>
+            <div class="product-price">
+              <span class="price-new">280 ريال</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+
+          <div class="product-card">
+            <img
+              src="https://images.pexels.com/photos/1350560/pexels-photo-1350560.jpeg?auto=compress&cs=tinysrgb&w=400"
+              alt="برنامج بناء الثقة" class="product-img">
+            <h3 class="product-title" data-translate="product-6">برنامج بناء الثقة</h3>
+            <p class="product-desc" data-translate="product-6-desc">برامج متميز لبناء ثقة طفلك بذاته</p>
+            <div class="product-price">
+              <span class="price-new">300 ريال</span>
+            </div>
+            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="section">
+      <div class="container">
+        <h1 class="page-title" data-translate="registration-title">ابدأ رحلتك معنا</h1>
+        <p class="page-subtitle" data-translate="registration-subtitle">سجل بياناتك واحجز موعدك مع أفضل المتخصصين</p>
+
+        <div class="registration-form-container">
+          <form class="registration-form" id="registrationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="parentName" data-translate="parent-name">اسم ولي الأمر</label>
+                <input type="text" id="parentName" name="parentName" required>
+              </div>
+              <div class="form-group">
+                <label for="childName" data-translate="child-name">اسم الطفل</label>
+                <input type="text" id="childName" name="childName" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone" data-translate="phone">رقم الهاتف</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="email" data-translate="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="childAge" data-translate="child-age">عمر الطفل</label>
+                <input type="number" id="childAge" name="childAge" min="1" max="18" required>
+              </div>
+              <div class="form-group">
+                <label for="serviceType" data-translate="service-type">نوع الخدمة المطلوبة</label>
+                <select id="serviceType" name="serviceType" required>
+                  <option value="" data-translate="select-service">اختر الخدمة</option>
+                  <option value="consultation" data-translate="consultation">استشارة</option>
+                  <option value="training" data-translate="training">تدريب</option>
+                  <option value="assessment" data-translate="assessment">تقييم</option>
+                  <option value="therapy" data-translate="therapy">علاج</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="preferredDate" data-translate="preferred-date">التاريخ المفضل</label>
+              <input type="date" id="preferredDate" name="preferredDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message" data-translate="additional-info">معلومات إضافية</label>
+              <textarea id="message" name="message" rows="4" placeholder="أخبرنا المزيد عن احتياجات طفلك..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit" data-translate="submit-booking">احجز موعدك
+              الآن</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h1 class="page-title" data-translate="contact-title">تواصل معنا</h1>
+        <p class="page-subtitle" data-translate="contact-subtitle">نحن هنا للإجابة على استفساراتك ومساعدتك في رحلة طفلك
+        </p>
+
+        <div class="contact-content">
+          <div class="contact-form-container">
+            <form class="contact-form" id="contactForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contactName" data-translate="your-name">اسمك</label>
+                  <input type="text" id="contactName" name="contactName" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone" data-translate="phone">رقم الهاتف</label>
+                  <input type="tel" id="contactPhone" name="contactPhone" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" data-translate="email">البريد الإلكتروني</label>
+                <input type="email" id="contactEmail" name="contactEmail" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subject" data-translate="subject">الموضوع</label>
+                <select id="subject" name="subject" required>
+                  <option value="" data-translate="select-subject">اختر الموضوع</option>
+                  <option value="general" data-translate="general-inquiry">استفسار عام</option>
+                  <option value="services" data-translate="services-info">معلومات عن الخدمات</option>
+                  <option value="pricing" data-translate="pricing">الأسعار</option>
+                  <option value="suggestion" data-translate="suggestion">اقتراح</option>
+                  <option value="complaint" data-translate="complaint">شكوى</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactMessage" data-translate="message">الرسالة</label>
+                <textarea id="contactMessage" name="contactMessage" rows="6" required
+                  placeholder="اكتب رسالتك هنا..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-submit" data-translate="send-message">إرسال
+                الرسالة</button>
+            </form>
+          </div>
+
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-icon">📧</div>
+              <h3 data-translate="email-us">راسلنا</h3>
+              <p>info@step1.com</p>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">📱</div>
+              <h3 data-translate="call-us">اتصل بنا</h3>
+              <p>+966 50 123 4567</p>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">📍</div>
+              <h3 data-translate="visit-us">زرنا</h3>
+              <p data-translate="address">الرياض، المملكة العربية السعودية</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="logo.svg" alt="Step 1" class="footer-logo-img">
+            <span class="footer-logo-text">Step 1</span>
+          </div>
+          <p class="footer-desc" data-translate="footer-desc">استثمر في مستقبل طفلك مع برامجنا المتخصصة والمبتكرة</p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title" data-translate="quick-links">روابط سريعة</h3>
+          <ul class="footer-links">
+            <li><a href="#home" data-translate="home">الرئيسية</a></li>
+            <li><a href="#counselors" data-translate="counselors">المدربين</a></li>
+            <li><a href="#store" data-translate="store-link">المتجر</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-title" data-translate="contact">تواصل معنا</h3>
+          <ul class="footer-contact">
+            <li>📧 <a href="mailto:info@step1.com">info@step1.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Step 1. <span data-translate="rights">جميع الحقوق محفوظة</span>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

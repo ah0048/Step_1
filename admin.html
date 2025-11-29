@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم Step 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+
+        /* شاشة تسجيل الدخول */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #7FA695, #A8C5B8);
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-header h1 {
+            color: #7FA695;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .login-header p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #7FA695;
+        }
+
+        .login-btn {
+            background-color: #7FA695;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #6a9180;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7FA695, #A8C5B8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            margin-bottom: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #7FA695;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: #666;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #7FA695;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #7FA695;
+            padding-bottom: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .data-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .data-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status.confirmed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status.unread {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+            font-size: 0.9rem;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: #7FA695;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-table {
+                font-size: 0.8rem;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة تسجيل الدخول -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>لوحة تحكم Step 1</h1>
+                <p>تسجيل دخول المدير</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">تسجيل الدخول</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- لوحة التحكم -->
+    <div id="dashboard" class="container" style="display: none;">
+        <div class="header">
+            <div>
+                <h1>لوحة تحكم Step 1</h1>
+                <p>إدارة المنصة والبيانات</p>
+            </div>
+            <button id="logoutBtn" class="logout-btn">تسجيل الخروج</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3 id="totalCounselors">0</h3>
+                <p>المدربين</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalBookings">0</h3>
+                <p>الحجوزات</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalContacts">0</h3>
+                <p>رسائل التواصل</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pendingBookings">0</h3>
+                <p>حجوزات معلقة</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>الحجوزات الأخيرة</h2>
+            <div id="bookingsContainer" class="loading">جاري التحميل...</div>
+        </div>
+
+        <div class="section">
+            <h2>رسائل التواصل الأخيرة</h2>
+            <div id="contactsContainer" class="loading">جاري التحميل...</div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الدخول الافتراضية
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            password: 'admin123'
+        };
+
+        // متغيرات البيانات
+        let currentData = {
+            stats: null,
+            bookings: [],
+            contacts: []
+        };
+
+        // تسجيل الدخول
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                // تسجيل الدخول ناجح
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadData();
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            }
+        }
+
+        // تسجيل الخروج
+        function handleLogout() {
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginForm').reset();
+        }
+
+        // تحميل البيانات من localStorage
+        function loadData() {
+            try {
+                // تحميل الحجوزات
+                const bookings = JSON.parse(localStorage.getItem('step1_bookings') || '[]');
+                
+                // تحميل الرسائل
+                const contacts = JSON.parse(localStorage.getItem('step1_contacts') || '[]');
+                
+                // حساب الإحصائيات
+                const stats = {
+                    totalCounselors: 6, // عدد المدربين الثابت
+                    totalBookings: bookings.length,
+                    totalContacts: contacts.length,
+                    pendingBookings: bookings.filter(b => b.status === 'pending').length,
+                    unreadContacts: contacts.filter(c => c.status === 'unread').length
+                };
+
+                currentData = { stats, bookings, contacts };
+                
+                // تحديث العرض
+                updateStats();
+                displayBookings();
+                displayContacts();
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError('خطأ في تحميل البيانات');
+            }
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            if (!currentData.stats) return;
+            
+            document.getElementById('totalCounselors').textContent = currentData.stats.totalCounselors;
+            document.getElementById('totalBookings').textContent = currentData.stats.totalBookings;
+            document.getElementById('totalContacts').textContent = currentData.stats.totalContacts;
+            document.getElementById('pendingBookings').textContent = currentData.stats.pendingBookings;
+        }
+
+        // عرض الحجوزات
+        function displayBookings() {
+            const container = document.getElementById('bookingsContainer');
+            
+            if (!currentData.bookings || currentData.bookings.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>لا توجد حجوزات</h3>
+                        <p>لم يتم إرسال أي طلبات حجز بعد</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const recentBookings = currentData.bookings.slice(-5).reverse();
+            
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ولي الأمر</th>
+                            <th>اسم الطفل</th>
+                            <th>نوع الخدمة</th>
+                            <th>التاريخ</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${recentBookings.map(booking => `
+                            <tr>
+                                <td>${booking.parent_name}</td>
+                                <td>${booking.child_name}</td>
+                                <td>${booking.service_type}</td>
+                                <td>${new Date(booking.preferred_date).toLocaleDateString('ar-SA')}</td>
+                                <td><span class="status ${booking.status}">${getStatusText(booking.status)}</span></td>
+                                <td>
+                                    <button class="btn btn-success" onclick="updateBookingStatus(${booking.id}, 'confirmed')">تأكيد</button>
+                                    <button class="btn btn-danger" onclick="updateBookingStatus(${booking.id}, 'cancelled')">إلغاء</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // عرض رسائل التواصل
+        function displayContacts() {
+            const container = document.getElementById('contactsContainer');
+            
+            if (!currentData.contacts || currentData.contacts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>لا توجد رسائل</h3>
+                        <p>لم يتم إرسال أي رسائل تواصل بعد</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const recentContacts = currentData.contacts.slice(-5).reverse();
+            
+            container.innerHTML = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الهاتف</th>
+                            <th>الموضوع</th>
+                            <th>التاريخ</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${recentContacts.map(contact => `
+                            <tr>
+                                <td>${contact.name}</td>
+                                <td>${contact.phone}</td>
+                                <td>${contact.subject}</td>
+                                <td>${new Date(contact.created_at).toLocaleDateString('ar-SA')}</td>
+                                <td><span class="status ${contact.status}">${getContactStatusText(contact.status)}</span></td>
+                                <td>
+                                    <button class="btn btn-info" onclick="viewContact(${contact.id})">عرض</button>
+                                    <button class="btn btn-success" onclick="markAsRead(${contact.id})">مقروءة</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // تحديث حالة الحجز
+        function updateBookingStatus(id, status) {
+            try {
+                const bookings = JSON.parse(localStorage.getItem('step1_bookings') || '[]');
+                const booking = bookings.find(b => b.id === id);
+                
+                if (booking) {
+                    booking.status = status;
+                    booking.updated_at = new Date().toISOString();
+                    localStorage.setItem('step1_bookings', JSON.stringify(bookings));
+                    
+                    // إعادة تحميل البيانات
+                    loadData();
+                    
+                    alert(`تم تحديث حالة الحجز إلى: ${getStatusText(status)}`);
+                }
+            } catch (error) {
+                console.error('Error updating booking status:', error);
+                alert('خطأ في تحديث حالة الحجز');
+            }
+        }
+
+        // تحديد الرسالة كمقروءة
+        function markAsRead(id) {
+            try {
+                const contacts = JSON.parse(localStorage.getItem('step1_contacts') || '[]');
+                const contact = contacts.find(c => c.id === id);
+                
+                if (contact) {
+                    contact.status = 'read';
+                    contact.updated_at = new Date().toISOString();
+                    localStorage.setItem('step1_contacts', JSON.stringify(contacts));
+                    
+                    // إعادة تحميل البيانات
+                    loadData();
+                    
+                    alert('تم تحديد الرسالة كمقروءة');
+                }
+            } catch (error) {
+                console.error('Error marking contact as read:', error);
+                alert('خطأ في تحديث حالة الرسالة');
+            }
+        }
+
+        // عرض تفاصيل الرسالة
+        function viewContact(id) {
+            const contact = currentData.contacts.find(c => c.id === id);
+            if (contact) {
+                const details = `
+الاسم: ${contact.name}
+الهاتف: ${contact.phone}
+البريد الإلكتروني: ${contact.email}
+الموضوع: ${contact.subject}
+الرسالة: ${contact.message}
+التاريخ: ${new Date(contact.created_at).toLocaleString('ar-SA')}
+                `;
+                alert(details);
+            }
+        }
+
+        // الحصول على نص الحالة
+        function getStatusText(status) {
+            const statusTexts = {
+                pending: 'معلقة',
+                confirmed: 'مؤكدة',
+                cancelled: 'ملغية',
+                completed: 'مكتملة'
+            };
+            return statusTexts[status] || status;
+        }
+
+        // الحصول على نص حالة الرسالة
+        function getContactStatusText(status) {
+            const statusTexts = {
+                unread: 'غير مقروءة',
+                read: 'مقروءة',
+                replied: 'تم الرد'
+            };
+            return statusTexts[status] || status;
+        }
+
+        // عرض رسالة خطأ
+        function showError(message) {
+            const container = document.getElementById('bookingsContainer');
+            container.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        // إعداد معالجات الأحداث
+        document.addEventListener('DOMContentLoaded', function() {
+            // معالج تسجيل الدخول
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            
+            // معالج تسجيل الخروج
+            document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+        });
+
+        // الاستماع للرسائل من النافذة الرئيسية
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'UPDATE_STATS') {
+                loadData();
+            } else if (event.data.type === 'INIT_DATA') {
+                currentData = event.data.data;
+                updateStats();
+                displayBookings();
+                displayContacts();
+            }
+        });
+
+        // تحديث البيانات كل 30 ثانية
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>

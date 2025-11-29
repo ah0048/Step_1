@@ -1,0 +1,25 @@
+{
+  "name": "step1-platform",
+  "version": "1.0.0",
+  "description": "Step 1 Child Development Platform",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview --port 3000",
+    "start": "node server.js",
+    "start:backend": "node server.js",
+    "start:frontend": "vite --port 3000"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "vite": "^5.4.2"
+  },
+  "keywords": ["child-development", "platform", "vite", "express"],
+  "author": "Step 1 Team",
+  "license": "MIT"
+}
