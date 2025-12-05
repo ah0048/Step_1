@@ -4,7 +4,7 @@
   "description": "Step 1 Child Development Platform",
   "main": "index.html",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
     "serve": "vite preview --port 3000",

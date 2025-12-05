@@ -56,7 +56,7 @@ body {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+ 
 }
 
 .logo-text {
@@ -171,13 +171,18 @@ body {
   color: var(--primary-color);
 }
 
-.hero-description {
+.hero-description1 {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+.hero-description2 {
   font-size: 1.1rem;
   color: var(--text-light);
   margin-bottom: 30px;
   line-height: 1.8;
 }
-
 .hero-buttons {
   display: flex;
   gap: 15px;
@@ -306,10 +311,11 @@ body {
   z-index: 1;
 }
 
-.card-handle {
-  color: rgba(255, 255, 255, 0.9);
+.card-handle a{
+  color: rgba(255, 255, 255, 0.9) !important;
   font-size: 0.9rem;
   font-style: italic;
+  font-weight: bold;
   position: relative;
   z-index: 1;
 }
@@ -332,7 +338,7 @@ body {
   color: var(--text-light);
   line-height: 1.9;
   margin-bottom: 25px;
-  max-width: 900px;
+  max-width: 920px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -398,6 +404,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 
 .featured-card:hover {
@@ -762,7 +769,7 @@ body {
   width: 45px;
   height: 45px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+
 }
 
 .footer-logo-text {
@@ -772,7 +779,9 @@ body {
 
 .footer-desc {
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.7;
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: normal;
 }
 
 .footer-title {
@@ -790,7 +799,9 @@ body {
 .footer-contact li {
   margin-bottom: 12px;
 }
-
+.footer-contact span.content{
+  margin-right: 8px;
+}
 .footer-links a,
 .footer-contact a {
   color: rgba(255, 255, 255, 0.9);
@@ -798,10 +809,6 @@ body {
   transition: color 0.3s;
 }
 
-.footer-links a:hover,
-.footer-contact a:hover {
-  color: var(--white);
-}
 
 .footer-bottom {
   text-align: center;
