@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
   --primary-color: #7FA695;
@@ -16,8 +17,8 @@
 }
 
 body {
-  font-family: 'Cairo', sans-serif;
-  background-color: var(--bg-light);
+    font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
   color: var(--text-dark);
   line-height: 1.6;
   direction: rtl;
@@ -30,20 +31,51 @@ body {
 }
 
 /* Header */
-.header {
-  background-color: var(--white);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 15px 0;
+
+/* General nav item style */
+/* General nav-link style */
+.navbar-nav .nav-item .nav-link {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+/* Hover effect */
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: #f8f9fa; /* light background */
+  color: #5193f7 !important; /* bootstrap primary blue */
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.navbar .container-fluid{
+  margin: 0 40px !important;
+}
+/* Active link */
+.navbar-nav .nav-item .nav-link.active {
+  background-color: #4d91f8 !important; /* bootstrap primary */
+  color: #fff !important; /* force white text */
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Dropdown items */
+.dropdown-menu .dropdown-item {
+  transition: all 0.3s ease;
+}
+.dropdown-menu .dropdown-item:hover {
+  background-color: #5191f1;
+  color: white;
+}
+
+.logo-img {
+  height: 40px; /* adjust as needed */
+}
+.navbar-nav .nav-link {
+  margin-left: 1rem; /* spacing between links */
 }
 
 .logo-container {
@@ -65,24 +97,7 @@ body {
   color: var(--text-dark);
 }
 
-.nav {
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
 
-.nav-link {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
-  cursor: pointer;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: var(--primary-color);
-}
 
 .cta-btn {
   background-color: var(--primary-color);
@@ -124,7 +139,43 @@ body {
   background-color: var(--primary-color);
   color: var(--white);
 }
+.section-title {
+  font-size: 2.2rem;
+  color: #0d6efd;
+  font-weight: 700;
+}
 
+.founder-card {
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 15px;
+  padding-bottom: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.founder-img {
+  width: 150px;
+  height: 300px;
+}
+
+.card-title {
+  font-size: 1.3rem;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+}
+
+.founder-card ul li {
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
 /* Section Management */
 .section {
   padding: 40px 0;

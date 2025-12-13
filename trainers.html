@@ -9,31 +9,64 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
 
 </head>
 <body>
-   <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo-container">
-          <img src="./logoo-removebg-preview.png" alt="Step 1 Logo" class="logo-img">
-          <span class="logo-text">Step 1</span>
-        </div>
-        <nav class="nav">
-          <a href="index.html" class="nav-link " >الرئيسية</a>
-          <a href="trainers.html" class="nav-link active" >المدربين</a>
-          <a href="" class="nav-link">المتجر</a>
-          <button class="cta-btn" data-translate="start-journey" onclick="showSection('#registration')">ابدأ رحلتك
-            الآن</button>
-        </nav>
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="ar">العربية</button>
-          <button class="lang-btn" data-lang="en">English</button>
-          <button class="lang-btn" data-lang="fr">Français</button>
-        </div>
+  <header class="header">
+  <nav class="navbar navbar-expand-lg bg-transparent shadow-sm" dir="rtl">
+    <div class="container-fluid d-flex align-items-center">
+
+      <!-- Toggler for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links + language dropdown -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav "> <!-- pushes items to the right in RTL -->
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="trainers.html">المدربين</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Store.html">المتجر</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">تواصل معنا</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="form.html">ابدا رحلتك الان</a>
+          </li>
+          <!-- Language dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              اللغة
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+              <li><button class="dropdown-item" data-lang="ar">العربية</button></li>
+              <li><button class="dropdown-item" data-lang="en">English</button></li>
+              <li><button class="dropdown-item" data-lang="fr">Français</button></li>
+            </ul>
+          </li>
+        </ul>
       </div>
+        <a class="navbar-brand d-flex align-items-center" style="margin-right:auto;">
+        <img src="./logoo-removebg-preview.png" alt="Step 1 Logo" class="logo-img ms-2" style="height:40px;" />
+        <span class="logo-text">Step 1</span>
+      </a>
     </div>
-  </header>
+  </nav>
+</header>
      <section id="counselors" class="section">
       <div class="container">
         <h1 class="page-title" data-translate="choose-counselor">اختر مدربك المثالى</h1>
@@ -289,7 +322,7 @@
         <div class="footer-col">
           <h3 class="footer-title" data-translate="contact">تواصل معنا</h3>
           <ul class="footer-contact">
-            <li> <i class="fab fa-whatsapp"></i> <a href="mailto:info@step1.com"> <span class="content">201553212342+</span></a></li>
+            <li> <i class="fab fa-whatsapp"></i> <a href="https://wa.me/201553212342"> <span class="content">201553212342+</span></a></li>
             <li> <i class="fab fa-instagram"></i> <a href="mailto:info@step1.com"> <span class="content">info@step1.com</span></a></li>
             <li> <i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/share/1B1ZKkNukT/"><span class="content">info@step1.com</span></a></li>
           </ul>
@@ -300,7 +333,12 @@
       </div>
     </div>
   </footer>
-  <script src="./js/script.js"></script>
  <script src="./js/main.js"></script>
+  <script src="./js/script.js"></script>
+     <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>

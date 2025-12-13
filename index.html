@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -6,36 +6,68 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Step 1 - استثمر في مستقبل طفلك</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="./css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
 </head>
 
 <body>
   <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo-container">
-          <img src="./logoo-removebg-preview.png" alt="Step 1 Logo" class="logo-img">
+    <nav class="navbar navbar-expand-lg bg-transparent shadow-sm" dir="rtl">
+      <div class="container-fluid d-flex align-items-center">
+
+        <!-- Toggler for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links + language dropdown -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav "> <!-- pushes items to the right in RTL -->
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="trainers.html">المدربين</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Store.html">المتجر</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">تواصل معنا</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="form.html">ابدا رحلتك الان</a>
+            </li>
+            <!-- Language dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                اللغة
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdown">
+                <li><button class="dropdown-item" data-lang="ar">العربية</button></li>
+                <li><button class="dropdown-item" data-lang="en">English</button></li>
+                <li><button class="dropdown-item" data-lang="fr">Français</button></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <a class="navbar-brand d-flex align-items-center" style="margin-right:auto;">
+          <img src="./logoo-removebg-preview.png" alt="Step 1 Logo" class="logo-img ms-2" style="height:40px;" />
           <span class="logo-text">Step 1</span>
-        </div>
-        <nav class="nav">
-          <a href="#" class="nav-link active" >الرئيسية</a>
-          <a href="trainers.html" class="nav-link" >المدربين</a>
-          <a href="" class="nav-link">المتجر</a>
-          <button class="cta-btn" data-translate="start-journey" onclick="showSection('#registration')">ابدأ رحلتك
-            الآن</button>
-        </nav>
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="ar">العربية</button>
-          <button class="lang-btn" data-lang="en">English</button>
-          <button class="lang-btn" data-lang="fr">Français</button>
-        </div>
+        </a>
       </div>
-    </div>
+    </nav>
   </header>
+
+
+
+
 
   <main id="app">
     <!-- Home Section -->
@@ -46,94 +78,122 @@
             <h1 class="hero-title">
               <span data-translate="invest">استثمر </span>
               <span class="highlight" data-translate="future">عقل</span>
-          
+
               <span data-translate="your-child">طفلك</span>
             </h1>
             <h1 class="hero-description1" data-translate="hero-desc1">
               رؤيتنا :الارتقاء بجيل سوي قادر علي نهضة المجتمع
-             
             </h1>
             <h1 class="hero-description2" data-translate="hero-desc2">
-         
-              رسالتنا : ىالوصول بالعلم لكل معلم ومربي اينما كان ونكون للطفل من يستثمره
+              رسالتنا : الوصول بالعلم لكل معلم ومربي اينما كان ،، ونكون للطفل من
+              يستثمره
             </h1>
             <div class="hero-buttons">
-              <button class="btn btn-primary" data-translate="start-now" onclick="showSection('#registration')">ابدأ
-                رحلتك الآن</button>
-              <button class="btn btn-secondary" data-translate="explore" onclick="showSection('#store')">اكتشف
-                المزيد</button>
+              <button class="btn btn-primary" data-translate="start-now"><a href="form.html"></a>
+                ابدأ رحلتك الآن
+              </button>
+              <button class="btn btn-secondary" data-translate="explore"><a href="Store.html"></a>
+                اكتشف المزيد
+              </button>
             </div>
           </div>
           <div class="hero-image">
             <div class="welcome-card">
-              <img src="./logoo-removebg-preview.png" alt="Welcome" class="card-logo">
+              <img src="./logoo-removebg-preview.png" alt="Welcome" class="card-logo" />
               <h2 class="card-title">Welcome</h2>
               <h3 class="card-step">step 1</h3>
-              <p class="card-text">With you, specialists Amina and Fatima, for an enjoyable journey with the child,
-                starting with the first step.</p>
-              <p class="card-handle"> <a href="info@step1.com">Fatma_amina@</a></p>
+              <p class="card-text">
+                With you, specialists Amina and Fatima, for an enjoyable
+                journey with the child, starting with the first step.
+              </p>
+              <p class="card-handle">
+                <a href="info@step1.com">Fatma_amina@</a>
+              </p>
             </div>
           </div>
         </div>
-        <div class="founders">
-          <h2 class="section-title" > المؤسسين</h2>
-          <div class="counselors-grid2">
-          <div class="counselor-card1">
-            <img
-              src="./Images/1.svg"
-              alt="Aisha Kamal" class="counselor-img">
-            <h3 class="counselor-name"> أ.أمنية ابو زيد</h3>
-            <h3 class="counselor-name"> مؤسس اكاديمية step 1</h3>
-            <p class="counselor-specialty"> حاصل على بكالوريوس تربيه رياض اطفال</p>
-            <p class="counselor-specialty"> اخصائي تربيه خاصه وتخاطب </p>
-            <p class="counselor-specialty"> اخصائي صعوبات تعلم  </p>
-             <p class="counselor-specialty"> اخصائي توحد  </p>
-            <p class="counselor-specialty"> اخصائي  ارشاد نفسي </p>
-            <p class="counselor-specialty"> اخصائي صعوبات تعلم  </p>
-             <p class="counselor-specialty"> اخصائي توحد  </p>
-            <p class="counselor-specialty"> مدرب وموجه مونتسوري معتمد  </p>
-            <p class="counselor-specialty">  حاصل على اعتماد ( TOT) من جامعة نيوكاسل البريطانيه   </p>
-            <p class="counselor-specialty"> مدرب معتمد لمنهجية (فريد) لبناء شخصية الطفل  </p>
-          </div>
-          
-          <div class="counselor-card2">
-            <img
-              src="./Images/2.svg"
-              alt="Aisha Kamal" class="counselor-img">
-          <h3 class="counselor-name"> أ.فاطمة ابو زيد</h3>
-            <h3 class="counselor-name"> مؤسس اكاديمية step 1</h3>
-            <p class="counselor-specialty"> حاصل على بكالوريوس تربيه رياض اطفال</p>
-            <p class="counselor-specialty"> اخصائي استشارات تعليميه  </p>
-            <p class="counselor-specialty"> اخصائي صعوبات تعلم  </p>
-             <p class="counselor-specialty"> اخصائي توحد  </p>
-            <p class="counselor-specialty"> اخصائي  ارشاد نفسي </p>
-            <p class="counselor-specialty"> اخصائي صعوبات تعلم  </p>
-             <p class="counselor-specialty"> اخصائي توحد  </p>
-            <p class="counselor-specialty"> مدرب وموجه مونتسوري معتمد  </p>
-          </div>
-          </div>
+       <div class="founders container py-5">
+  <h2 class="section-title text-center mb-5">المؤسسين</h2>
+  <div class="row g-4 justify-content-center">
+
+    <!-- Founder Card 1 -->
+    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+      <div class="card founder-card text-center flex-fill">
+        <img src="./Images/4889843.jpg" 
+             class="card-img-top  mx-auto founder-img" 
+             alt="Founder 1">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">أ.أمنية ابو زيد</h5>
+          <h6 class="card-subtitle mb-3 text-muted">مؤسس اكاديمية Step 1</h6>
+          <ul class="list-unstyled text-center">
+            <li>بكالوريوس تربيه رياض اطفال</li>
+            <li>اخصائي تربيه خاصه وتخاطب</li>
+            <li>اخصائي ارشاد نفسي</li>
+            <li>مدرب وموجه مونتسوري معتمد</li>
+            <li>حاصل على اعتماد (TOT) من جامعة نيوكاسل البريطانيه</li>
+            <li>مدرب معتمد لمنهجية (فريد) لبناء شخصية الطفل</li>
+          </ul>
         </div>
+      </div>
+    </div>
+
+    <!-- Founder Card 2 -->
+    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+      <div class="card founder-card text-center flex-fill">
+        <img src="./Images/8077066.jpg" 
+             class="card-img-top mx-auto founder-img" 
+             alt="Founder 2">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">أ.فاطمة ابو زيد</h5>
+          <h6 class="card-subtitle mb-3 text-muted">مؤسس اكاديمية Step 1</h6>
+          <ul class="list-unstyled text-center">
+            <li>بكالوريوس تربيه رياض اطفال</li>
+            <li>اخصائي استشارات تعليميه</li>
+            <li>اخصائي صعوبات تعلم</li>
+            <li>اخصائي توحد</li>
+            <li>اخصائي ارشاد نفسي</li>
+            <li>مدرب وموجه مونتسوري معتمد</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 
         <div class="about-section">
-          <h2 class="section-title" >من نحن؟</h2>
+          <h2 class="section-title">من نحن؟</h2>
           <p class="about-description" data-translate="about-desc-1">
-           اكاديمية step 1 التعليمية للاستشارة والتدريب ، هي اكاديمية تهدف الي تقديم خدمات تعليمية تربوية للمعلمين وأولياء الامور ونعتمد علي منهجية منتسوري في التعليم والتريبة وتأسيس الطفل
-           فذلك يجعلنا نساعد الطفل علي الاكتشاف والتعلم السريع.
-           حيث تعمد الأكاديمية علي اقسام رئيسية(كورسات، ورش عمل- استشارات - جلسات -حصص تأسيس بنهج منتسوري - حلقات قرآن)
+            اكاديمية step 1 التعليمية للاستشارة والتدريب ، هي اكاديمية تهدف
+            الي تقديم خدمات تعليمية تربوية للمعلمين وأولياء الامور ونعتمد علي
+            منهجية منتسوري في التعليم والتريبة وتأسيس الطفل فذلك،، يجعلنا نساعد
+            الطفل علي الاكتشاف والتعلم السريع.    ونقدم خدمات تعليمية من خلال اقسام متعددة
+            (كورسات، ورش عمل- استشارات - جلسات -حصص تأسيس بنهج منتسوري -
+            حلقات قرآن)
           </p>
 
           <div class="stats">
             <div class="stat-card">
-              <div class="stat-number"><i class="fas fa-chalkboard-teacher"></i></div>
-              <div class="stat-label" data-translate="families"> معلم متخصص في مجال الطفل +15 </div>
+              <div class="stat-number">
+                <i class="fas fa-chalkboard-teacher"></i>
+              </div>
+              <div class="stat-label" data-translate="families">
+                معلم متخصص في مجال الطفل +15
+              </div>
             </div>
             <div class="stat-card">
-              <div class="stat-number"><i class="fas fa-user-md"></i> </div>
-              <div class="stat-label" data-translate="specialists"> اخصائيين واستشاريين لحل مشاكل الطفل</div>
+              <div class="stat-number"><i class="fas fa-user-md"></i></div>
+              <div class="stat-label" data-translate="specialists">
+                اخصائيين واستشاريين لحل مشاكل الطفل
+              </div>
             </div>
             <div class="stat-card">
               <div class="stat-number"><i class="fas fa-book"></i></div>
-              <div class="stat-label" data-translate="rating">حقائب تعليمية صنعت خصيصا لطفلك </div>
+              <div class="stat-label" data-translate="rating">
+                حقائب تعليمية صنعت خصيصا لطفلك
+              </div>
             </div>
           </div>
         </div>
@@ -142,265 +202,69 @@
           <h2 class="section-title" data-translate="featured">محتوى مميز</h2>
           <div class="featured-grid">
             <div class="featured-card">
-              <div class="featured-badge" data-translate="popular"> الافضل</div>
+              <div class="featured-badge" data-translate="popular">
+                الافضل
+              </div>
               <div class="featured-content">
-                <h3 class="featured-title" data-translate="featured-1-title"> اشتراك نصف سنوي</h3>
-                <h3 class="featured-title" data-translate="featured-1.1-title">  جلسة واحدة</h3>
-                <p class="featured-desc" data-translate="featured-1-desc">سعر الجلسة : 130 EGP</p>
-                <p class="featured-desc" data-translate="featured-1.1-desc"> سعر الاشتراك نصف السنوي : 6240 EGP</p>
+                <h3 class="featured-title" data-translate="featured-1-title">
+                  اشتراك نصف سنوي
+                </h3>
+                <h3 class="featured-title" data-translate="featured-1.1-title">
+                  جلسة واحدة
+                </h3>
+                <p class="featured-desc" data-translate="featured-1-desc">
+                  سعر الجلسة : 130 EGP
+                </p>
+                <p class="featured-desc" data-translate="featured-1.1-desc">
+                  سعر الاشتراك نصف السنوي : 6240 EGP
+                </p>
               </div>
             </div>
             <div class="featured-card">
-              <h3 class="featured-title" data-translate="featured-2-title"> اشتراك ربع سنوي</h3>
-                <h3 class="featured-title" data-translate="featured-2.2-title"> 24 جلسة </h3>
-                <p class="featured-desc" data-translate="featured-2-desc">سعر الجلسة : 162.5 EGP</p>
-                <p class="featured-desc" data-translate="featured-2.2-desc"> سعر الاشتراك ربع السنوي : 3900 EGP</p>
+              <h3 class="featured-title" data-translate="featured-2-title">
+                اشتراك ربع سنوي
+              </h3>
+              <h3 class="featured-title" data-translate="featured-2.2-title">
+                24 جلسة
+              </h3>
+              <p class="featured-desc" data-translate="featured-2-desc">
+                سعر الجلسة : 162.5 EGP
+              </p>
+              <p class="featured-desc" data-translate="featured-2.2-desc">
+                سعر الاشتراك ربع السنوي : 3900 EGP
+              </p>
             </div>
-            <div class="featured-card ">
-               <h3 class="featured-title" data-translate="featured-3-title"> اشتراك  شهري</h3>
-                <h3 class="featured-title" data-translate="featured-3.3-title"> 8 جلسات </h3>
-                <p class="featured-desc" data-translate="featured-3-desc">سعر الجلسة : 200 EGP</p>
-                <p class="featured-desc" data-translate="featured-3.3-desc"> سعر الاشتراك الشهري : 1600 EGP</p>
+            <div class="featured-card">
+              <h3 class="featured-title" data-translate="featured-3-title">
+                اشتراك شهري
+              </h3>
+              <h3 class="featured-title" data-translate="featured-3.3-title">
+                8 جلسات
+              </h3>
+              <p class="featured-desc" data-translate="featured-3-desc">
+                سعر الجلسة : 200 EGP
+              </p>
+              <p class="featured-desc" data-translate="featured-3.3-desc">
+                سعر الاشتراك الشهري : 1600 EGP
+              </p>
             </div>
           </div>
         </div>
 
         <div class="cta-section">
-          <h2 class="cta-title" data-translate="cta-title">ابدأ رحلة التميز مع طفلك اليوم</h2>
-          <p class="cta-description" data-translate="cta-desc">انضم إلى العائلات التي وضعت ثقتها في برامجنا المبتكرة
-            لأطفالهم</p>
+          <h2 class="cta-title" data-translate="cta-title">
+            ابدأ رحلة التميز مع طفلك اليوم
+          </h2>
+          <p class="cta-description" data-translate="cta-desc">
+            انضم إلى العائلات التي وضعت ثقتها في برامجنا المبتكرة لأطفالهم
+          </p>
           <div class="cta-buttons">
-            <button class="btn btn-primary" data-translate="start-now" onclick="showSection('#registration')">ابدأ رحلتك
-              الآن</button>
-            <button class="btn btn-outline" data-translate="contact-us" onclick="showSection('#contact')">تواصل مع
-              مستشار</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Counselors Section -->
-
-    <!-- Store Section -->
-    <section id="store" class="section" style="display: none;">
-      <div class="container">
-        <h1 class="page-title" data-translate="store">المتجر</h1>
-        <p class="page-subtitle" data-translate="store-subtitle">اكتر البرامج المناسب لحالتك واستثمر في مستقبلك</p>
-
-        <div class="store-grid">
-          <div class="product-card">
-            <div class="product-badge red" data-translate="limited">خصم محدود</div>
-            <img
-              src="https://images.pexels.com/photos/1720186/pexels-photo-1720186.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="جلسات التنمية الذهنية" class="product-img">
-            <h3 class="product-title" data-translate="product-1">جلسات التنمية الذهنية</h3>
-            <p class="product-desc" data-translate="product-1-desc">جلسات أسبوعية لتنمية القدرات الذهنية للطفل</p>
-            <div class="product-price">
-              <span class="price-new">350 ريال</span>
-              <span class="price-old">مشطوب</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-
-          <div class="product-card">
-            <img
-              src="https://images.pexels.com/photos/159844/cellular-education-classroom-159844.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="دورة المهارات الاجتماعية" class="product-img">
-            <h3 class="product-title" data-translate="product-2">دورة المهارات الاجتماعية</h3>
-            <p class="product-desc" data-translate="product-2-desc">دورة تفاعلية لتطوير المهارات الاجتماعية لدى الطفل
-            </p>
-            <div class="product-price">
-              <span class="price-new">650 ريال</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-
-          <div class="product-card">
-            <div class="product-badge red" data-translate="limited">خصم محدود</div>
-            <img
-              src="https://images.pexels.com/photos/3662770/pexels-photo-3662770.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="برنامج الاستشارة الشهرية" class="product-img">
-            <h3 class="product-title" data-translate="product-3">برنامج الاستشارة الشهرية</h3>
-            <p class="product-desc" data-translate="product-3-desc">برنامج متكامل من الاستشارات مع أفضل المتخصصين</p>
-            <div class="product-price">
-              <span class="price-new">200 ريال</span>
-              <span class="price-old">مشطوب</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-
-          <div class="product-card">
-            <div class="product-badge green" data-translate="new">الأكثر شيوعاً</div>
-            <img
-              src="https://images.pexels.com/photos/1001914/pexels-photo-1001914.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="باقة التميز الشاملة" class="product-img">
-            <h3 class="product-title" data-translate="product-4">باقة التميز الشاملة</h3>
-            <p class="product-desc" data-translate="product-4-desc">باقة شاملة تجمع كل البرامج التدريبية</p>
-            <div class="product-price">
-              <span class="price-new">1200 ريال</span>
-              <span class="price-old">مشطوب</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-
-          <div class="product-card">
-            <img
-              src="https://images.pexels.com/photos/3806690/pexels-photo-3806690.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="دورة الابداع والخيال" class="product-img">
-            <h3 class="product-title" data-translate="product-5">دورة الابداع والخيال</h3>
-            <p class="product-desc" data-translate="product-5-desc">تنمية الجوانب الابداعية لدى طفلك عن طريق العمل</p>
-            <div class="product-price">
-              <span class="price-new">280 ريال</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-
-          <div class="product-card">
-            <img
-              src="https://images.pexels.com/photos/1350560/pexels-photo-1350560.jpeg?auto=compress&cs=tinysrgb&w=400"
-              alt="برنامج بناء الثقة" class="product-img">
-            <h3 class="product-title" data-translate="product-6">برنامج بناء الثقة</h3>
-            <p class="product-desc" data-translate="product-6-desc">برامج متميز لبناء ثقة طفلك بذاته</p>
-            <div class="product-price">
-              <span class="price-new">300 ريال</span>
-            </div>
-            <button class="btn btn-store" data-translate="add-basket">🛒 أضف للسلة</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section id="registration" class="section" style="display: none;">
-      <div class="container">
-        <h1 class="page-title" data-translate="registration-title">ابدأ رحلتك معنا</h1>
-        <p class="page-subtitle" data-translate="registration-subtitle">سجل بياناتك واحجز موعدك مع أفضل المتخصصين</p>
-
-        <div class="registration-form-container">
-          <form class="registration-form" id="registrationForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="parentName" data-translate="parent-name">اسم ولي الأمر</label>
-                <input type="text" id="parentName" name="parentName" required>
-              </div>
-              <div class="form-group">
-                <label for="childName" data-translate="child-name">اسم الطفل</label>
-                <input type="text" id="childName" name="childName" required>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone" data-translate="phone">رقم الهاتف</label>
-                <input type="tel" id="phone" name="phone" required>
-              </div>
-              <div class="form-group">
-                <label for="email" data-translate="email">البريد الإلكتروني</label>
-                <input type="email" id="email" name="email" required>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="childAge" data-translate="child-age">عمر الطفل</label>
-                <input type="number" id="childAge" name="childAge" min="1" max="18" required>
-              </div>
-              <div class="form-group">
-                <label for="serviceType" data-translate="service-type">نوع الخدمة المطلوبة</label>
-                <select id="serviceType" name="serviceType" required>
-                  <option value="" data-translate="select-service">اختر الخدمة</option>
-                  <option value="consultation" data-translate="consultation">استشارة</option>
-                  <option value="training" data-translate="training">تدريب</option>
-                  <option value="assessment" data-translate="assessment">تقييم</option>
-                  <option value="therapy" data-translate="therapy">علاج</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="preferredDate" data-translate="preferred-date">التاريخ المفضل</label>
-              <input type="date" id="preferredDate" name="preferredDate" required>
-            </div>
-
-            <div class="form-group">
-              <label for="message" data-translate="additional-info">معلومات إضافية</label>
-              <textarea id="message" name="message" rows="4" placeholder="أخبرنا المزيد عن احتياجات طفلك..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-submit" data-translate="submit-booking">احجز موعدك
-              الآن</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="display: none;">
-      <div class="container">
-        <h1 class="page-title" data-translate="contact-title">تواصل معنا</h1>
-        <p class="page-subtitle" data-translate="contact-subtitle">نحن هنا للإجابة على استفساراتك ومساعدتك في رحلة طفلك
-        </p>
-
-        <div class="contact-content">
-          <div class="contact-form-container">
-            <form class="contact-form" id="contactForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contactName" data-translate="your-name">اسمك</label>
-                  <input type="text" id="contactName" name="contactName" required>
-                </div>
-                <div class="form-group">
-                  <label for="contactPhone" data-translate="phone">رقم الهاتف</label>
-                  <input type="tel" id="contactPhone" name="contactPhone" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="contactEmail" data-translate="email">البريد الإلكتروني</label>
-                <input type="email" id="contactEmail" name="contactEmail" required>
-              </div>
-
-              <div class="form-group">
-                <label for="subject" data-translate="subject">الموضوع</label>
-                <select id="subject" name="subject" required>
-                  <option value="" data-translate="select-subject">اختر الموضوع</option>
-                  <option value="general" data-translate="general-inquiry">استفسار عام</option>
-                  <option value="services" data-translate="services-info">معلومات عن الخدمات</option>
-                  <option value="pricing" data-translate="pricing">الأسعار</option>
-                  <option value="suggestion" data-translate="suggestion">اقتراح</option>
-                  <option value="complaint" data-translate="complaint">شكوى</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="contactMessage" data-translate="message">الرسالة</label>
-                <textarea id="contactMessage" name="contactMessage" rows="6" required
-                  placeholder="اكتب رسالتك هنا..."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-submit" data-translate="send-message">إرسال
-                الرسالة</button>
-            </form>
-          </div>
-
-          <div class="contact-info">
-            <div class="contact-card">
-              <div class="contact-icon">📧</div>
-              <h3 data-translate="email-us">راسلنا</h3>
-              <p>info@step1.com</p>
-            </div>
-
-            <div class="contact-card">
-              <div class="contact-icon">📱</div>
-              <h3 data-translate="call-us">اتصل بنا</h3>
-              <p>+966 50 123 4567</p>
-            </div>
-
-            <div class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h3 data-translate="visit-us">زرنا</h3>
-              <p data-translate="address">الرياض، المملكة العربية السعودية</p>
-            </div>
+            <button class="btn btn-primary" data-translate="start-now" onclick="showSection('#registration')">
+              ابدأ رحلتك الآن
+            </button>
+            <button class="btn btn-outline" data-translate="contact-us" onclick="showSection('#contact')">
+              تواصل مع مستشار
+            </button>
           </div>
         </div>
       </div>
@@ -412,36 +276,59 @@
       <div class="footer-content">
         <div class="footer-col">
           <div class="footer-logo">
-            <img src="./logoo-removebg-preview.png" alt="Step 1" class="footer-logo-img">
+            <img src="./logoo-removebg-preview.png" alt="Step 1" class="footer-logo-img" />
             <span class="footer-logo-text">Step 1</span>
           </div>
-          <p class="footer-desc" data-translate="footer-desc"> ليبقي  الأثر  💪🧠
- </p>
+          <p class="footer-desc" data-translate="footer-desc">
+            ليبقي الأثر 💪🧠
+          </p>
         </div>
         <div class="footer-col">
-          <h3 class="footer-title" data-translate="quick-links">روابط سريعة</h3>
+          <h3 class="footer-title" data-translate="quick-links">
+            روابط سريعة
+          </h3>
           <ul class="footer-links">
             <li><a href="#home" data-translate="home">الرئيسية</a></li>
-            <li><a href="#counselors" data-translate="counselors">المدربين</a></li>
+            <li>
+              <a href="#counselors" data-translate="counselors">المدربين</a>
+            </li>
             <li><a href="#store" data-translate="store-link">المتجر</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3 class="footer-title" data-translate="contact">تواصل معنا</h3>
           <ul class="footer-contact">
-            <li> <i class="fab fa-whatsapp"></i> <a href="mailto:info@step1.com"> <span class="content">201553212342+</span></a></li>
-            <li> <i class="fab fa-instagram"></i> <a href="mailto:info@step1.com"> <span class="content">info@step1.com</span></a></li>
-            <li> <i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/share/1B1ZKkNukT/"><span class="content">info@step1.com</span></a></li>
+            <li>
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/201553212342">
+                <span class="content">201553212342+</span></a>
+            </li>
+            <li>
+              <i class="fab fa-instagram"></i>
+              <a href="mailto:info@step1.com">
+                <span class="content">info@step1.com</span></a>
+            </li>
+            <li>
+              <i class="fab fa-facebook-f"></i>
+              <a href="https://www.facebook.com/share/1B1ZKkNukT/"><span class="content">info@step1.com</span></a>
+            </li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 Step 1. <span data-translate="rights">جميع الحقوق محفوظة</span>.</p>
+        <p>
+          &copy; 2025 Step 1.
+          <span data-translate="rights">جميع الحقوق محفوظة</span>.
+        </p>
       </div>
     </div>
   </footer>
 
   <script src="./js/main.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
