@@ -3,21 +3,21 @@
   padding: 0;
   box-sizing: border-box;
 }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 :root {
-  --primary-color: #7FA695;
-  --secondary-color: #F5E6D3;
-  --text-dark: #2C3E50;
-  --text-light: #6C757D;
-  --bg-light: #FDF8F3;
-  --white: #FFFFFF;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
-  --shadow-lg: 0 4px 16px rgba(0,0,0,0.15);
+  --primary-color: #7fa695;
+  --secondary-color: #f5e6d3;
+  --text-dark: #2c3e50;
+  --text-light: #6c757d;
+  --bg-light: #fdf8f3;
+  --white: #ffffff;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #f9f9f9;
   color: var(--text-dark);
   line-height: 1.6;
@@ -49,9 +49,9 @@ body {
   background-color: #f8f9fa; /* light background */
   color: #5193f7 !important; /* bootstrap primary blue */
   transform: translateY(-2px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-.navbar .container-fluid{
+.navbar .container-fluid {
   margin: 0 40px !important;
 }
 /* Active link */
@@ -59,7 +59,7 @@ body {
   background-color: #4d91f8 !important; /* bootstrap primary */
   color: #fff !important; /* force white text */
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Dropdown items */
@@ -88,7 +88,6 @@ body {
   width: 50px;
   height: 50px;
   object-fit: contain;
- 
 }
 
 .logo-text {
@@ -96,8 +95,6 @@ body {
   font-weight: 700;
   color: var(--text-dark);
 }
-
-
 
 .cta-btn {
   background-color: var(--primary-color);
@@ -108,7 +105,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .cta-btn:hover {
@@ -130,7 +127,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
   font-size: 0.9rem;
 }
 
@@ -147,21 +144,21 @@ body {
 
 .founder-card {
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 15px;
   padding-bottom: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .founder-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .founder-img {
   width: 150px;
-  height: 300px;
+  height: 500px;
 }
 
 .card-title {
@@ -246,7 +243,7 @@ body {
   cursor: pointer;
   transition: all 0.3s;
   border: 2px solid transparent;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .btn-primary {
@@ -291,7 +288,7 @@ body {
 }
 
 .welcome-card {
-  background: linear-gradient(135deg, #7FA695 0%, #A8C5B8 50%, #F5E6D3 100%);
+  background: linear-gradient(135deg, #7fa695 0%, #a8c5b8 50%, #f5e6d3 100%);
   padding: 40px;
   border-radius: 30px;
   text-align: center;
@@ -302,7 +299,7 @@ body {
 }
 
 .welcome-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50px;
   right: -50px;
@@ -313,7 +310,7 @@ body {
 }
 
 .welcome-card::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -30px;
   left: -30px;
@@ -328,7 +325,7 @@ body {
   height: 100px;
   object-fit: contain;
   margin-bottom: 15px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
   position: relative;
   z-index: 1;
 }
@@ -347,7 +344,7 @@ body {
   font-weight: 700;
   color: var(--white);
   margin-bottom: 20px;
-  font-family: 'Brush Script MT', cursive;
+  font-family: "Brush Script MT", cursive;
   position: relative;
   z-index: 1;
 }
@@ -361,7 +358,7 @@ body {
   z-index: 1;
 }
 
-.card-handle a{
+.card-handle a {
   color: rgba(255, 255, 255, 0.9) !important;
   font-size: 0.9rem;
   font-style: italic;
@@ -369,12 +366,13 @@ body {
   position: relative;
   z-index: 1;
 }
-.founders{
-margin: auto;
+.founders {
+  margin: auto;
 }
 /* About Section */
 
-.about-section, .founders {
+.about-section,
+.founders {
   padding: 60px 0;
   text-align: center;
 }
@@ -469,8 +467,8 @@ margin: auto;
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #E8F5E9;
-  color: #4CAF50;
+  background-color: #e8f5e9;
+  color: #4caf50;
   padding: 5px 15px;
   border-radius: 15px;
   font-size: 0.85rem;
@@ -481,8 +479,8 @@ margin: auto;
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #FFEBEE;
-  color: #F44336;
+  background-color: #ffebee;
+  color: #f44336;
   padding: 5px 15px;
   border-radius: 15px;
   font-size: 0.85rem;
@@ -623,7 +621,8 @@ margin: auto;
   border-color: gold;
   color: #fff;
 }
-.counselor-card1, .counselor-card2{
+.counselor-card1,
+.counselor-card2 {
   background-color: var(--white);
   border-radius: 20px;
   padding: 25px;
@@ -636,7 +635,8 @@ margin: auto;
   max-width: 450px;
 }
 
-.counselor-card1:hover, .counselor-card2:hover {
+.counselor-card1:hover,
+.counselor-card2:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
@@ -662,8 +662,8 @@ margin: auto;
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: #FFF3E0;
-  color: #FF9800;
+  background-color: #fff3e0;
+  color: #ff9800;
   padding: 5px 12px;
   border-radius: 15px;
   font-size: 0.9rem;
@@ -716,8 +716,8 @@ margin: auto;
 }
 
 .tag {
-  background-color: #E8F5E9;
-  color: #4CAF50;
+  background-color: #e8f5e9;
+  color: #4caf50;
   padding: 5px 12px;
   border-radius: 15px;
   font-size: 0.85rem;
@@ -734,7 +734,7 @@ margin: auto;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .btn-counselor:hover {
@@ -777,13 +777,13 @@ margin: auto;
 }
 
 .product-badge.red {
-  background-color: #FFEBEE;
-  color: #F44336;
+  background-color: #ffebee;
+  color: #f44336;
 }
 
 .product-badge.green {
-  background-color: #E8F5E9;
-  color: #4CAF50;
+  background-color: #e8f5e9;
+  color: #4caf50;
 }
 
 .product-img {
@@ -843,7 +843,7 @@ margin: auto;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
 }
 
 .btn-store:hover {
@@ -877,7 +877,6 @@ margin: auto;
   width: 45px;
   height: 45px;
   object-fit: contain;
-
 }
 
 .footer-logo-text {
@@ -907,7 +906,7 @@ margin: auto;
 .footer-contact li {
   margin-bottom: 12px;
 }
-.footer-contact span.content{
+.footer-contact span.content {
   margin-right: 8px;
 }
 .footer-links a,
@@ -916,7 +915,6 @@ margin: auto;
   text-decoration: none;
   transition: color 0.3s;
 }
-
 
 .footer-bottom {
   text-align: center;
@@ -963,10 +961,10 @@ margin: auto;
 .form-group select,
 .form-group textarea {
   padding: 12px 15px;
-  border: 2px solid #E0E0E0;
+  border: 2px solid #e0e0e0;
   border-radius: 10px;
   font-size: 1rem;
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
   transition: border-color 0.3s;
 }
 
