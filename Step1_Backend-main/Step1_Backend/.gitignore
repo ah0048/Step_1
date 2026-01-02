@@ -1,0 +1,45 @@
+## Build Folders
+bin/
+obj/
+
+## Rider / VSCode
+.idea/
+.vscode/
+
+## Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## ASP.NET Secret Manager
+secrets.json
+**/appsettings.Development.json
+**/appsettings.Local.json
+
+## Logs
+logs/
+*.log
+
+## Dotnet Tools
+*.jfrog
+*.vs/
+.vs/
+
+## OS generated
+.DS_Store
+Thumbs.db
+
+## Publish output
+/publish/
+/dist/
+
+## Resharper
+_ReSharper.Caches/
+
+## Node modules (if using frontend together)
+node_modules/
+
+## Temporary files
+*.tmp
+*.temp
