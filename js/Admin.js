@@ -5,194 +5,239 @@ const loginBtn = document.getElementById("loginBtn");
 const loginForm = document.getElementById("loginForm");
 
 loginBtn.onclick = () => {
-  new bootstrap.Modal(document.getElementById("loginModal")).show();
+    new bootstrap.Modal(document.getElementById("loginModal")).show();
 };
 
 loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-  try {
-    const res = await fetch("http://localhost:5184/api/Auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
-    });
+    try {
+        const res = await fetch("http://localhost:5184/api/Auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (!res.ok || !data.isSuccess) {
-      alert(data.errorMessage || "Login failed");
-      return;
+        if (!res.ok || !data.isSuccess) {
+            alert(data?.errorMessage || "Login failed");
+            console.error("Login error:", data);
+            return;
+        }
+
+        localStorage.setItem("token", data.data);
+        alert("Login successful");
+        bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
+
+    } catch (err) {
+        console.error("Network error:", err);
+        alert("Network error");
     }
-
-    // حفظ التوكن
-    localStorage.setItem("token", data.data);
-    console.log("Token saved:", data.data);
-
-    alert("Login successful!");
-    bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
-
-  } catch (err) {
-    console.error(err);
-    alert("Network error during login");
-  }
 });
 
 // ==========================
-// HELPER TO GET TOKEN
+// TOKEN
 // ==========================
 function getToken() {
-  return localStorage.getItem("token");
+    return localStorage.getItem("token");
 }
 
 // ==========================
-// TRAINERS MANAGEMENT
+// TRAINERS
 // ==========================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", () => {
+
     let trainers = [];
     let editId = null;
 
-    const table = document.getElementById('trainersTable');
-    const trainersCount = document.getElementById('trainersCount');
-    const trainerForm = document.getElementById('trainerForm');
-    const trainerModalEl = document.getElementById('trainerModal');
-    const trainerModal = new bootstrap.Modal(trainerModalEl);
+    const table = document.getElementById("trainersTable");
+    const trainersCount = document.getElementById("trainersCount");
+    const trainerForm = document.getElementById("trainerForm");
+    const trainerModal = new bootstrap.Modal(document.getElementById("trainerModal"));
 
-    const trainerIdInput = document.getElementById('trainerId');
-    const nameInput = document.getElementById('name');
-    const specialtyInput = document.getElementById('specialty');
-    const phoneInput = document.getElementById('phone');
-    const ratingInput = document.getElementById('rating');
+    const arabicNameInput = document.getElementById("arabicName");
+    const englishNameInput = document.getElementById("englishName");
+    const majorInput = document.getElementById("major");
+    const specilizationInput = document.getElementById("specilization");
+    const imageInput = document.getElementById("image");
 
-    // زر فتح إضافة مدرب
-    document.getElementById('addTrainerBtn').addEventListener('click', function() {
+    // ==========================
+    // ADD MODAL
+    // ==========================
+    document.getElementById("addTrainerBtn").addEventListener("click", () => {
         editId = null;
         trainerForm.reset();
-        trainerIdInput.value = '';
         trainerModal.show();
     });
 
-    // جلب المدربين من API
-    function fetchTrainers() {
-        const token = getToken();
-        if (!token) return console.error("Token is missing! Login first.");
+    // ==========================
+    // FETCH TRAINERS
+    // ==========================
+    async function fetchTrainers() {
+    const token = getToken();
+    if (!token) return;
 
-        fetch('http://localhost:5184/api/Trainer/all', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            return res.json();
-        })
-        .then(data => {
-            trainers = data;
-            renderTable();
-        })
-        .catch(err => console.error(err));
+    try {
+        const res = await fetch("http://localhost:5184/api/Trainer/all", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error ${res.status}`);
+        }
+
+        const data = await res.json();
+
+        console.log("API response:", data);
+
+        // لو الـ API بيرجع isSuccess
+        trainers = data.data ?? data;
+
+        renderTable();
+
+    } catch (err) {
+        console.error("Fetch trainers error:", err);
+        alert("Failed to load trainers");
     }
+}
 
-    // رسم الجدول
+
+    // ==========================
+    // RENDER TABLE
+    // ==========================
     function renderTable() {
         table.innerHTML = '';
+
         trainers.forEach(trainer => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${trainer.name}</td>
-                <td>${trainer.specialty}</td>
-                <td>${trainer.phone}</td>
-                <td>${trainer.rating ?? '-'}</td>
-                <td>
-                    <button class="btn btn-sm btn-warning me-1 edit-btn">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger delete-btn">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </td>
-            `;
-            table.appendChild(row);
+      <td>${trainer.arabicName}</td>
+      <td>${trainer.englishName}</td>
+      <td>${trainer.major}</td>
+      <td>${trainer.specilization}</td>
+      <td>
+        <button class="btn btn-sm btn-warning edit-btn">✏️</button>
+        <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
+      </td>
+    `;
 
-            row.querySelector('.edit-btn').addEventListener('click', () => editTrainer(trainer.id));
-            row.querySelector('.delete-btn').addEventListener('click', () => deleteTrainer(trainer.id));
+            row.querySelector('.edit-btn').onclick = () => editTrainer(trainer.id);
+            row.querySelector('.delete-btn').onclick = () => deleteTrainer(trainer.id);
+
+            table.appendChild(row);
         });
 
         trainersCount.innerText = trainers.length;
     }
 
-    // إضافة / تعديل مدرب
-    trainerForm.addEventListener('submit', async function(e) {
-        e.preventDefault(); // يمنع الفورم من عمل refresh
+    // ==========================
+    // ADD / UPDATE TRAINER
+    // ==========================
+    trainerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
         const token = getToken();
-        if (!token) return alert("Token missing! Login first.");
+        if (!token) {
+            alert("Please login first");
+            return;
+        }
+
+        if (!imageInput.files.length && !editId) {
+            alert("Please select an image");
+            return;
+        }
 
         const formData = new FormData();
-        formData.append('name', nameInput.value);
-        formData.append('specialty', specialtyInput.value);
-        formData.append('phone', phoneInput.value);
-        formData.append('rating', ratingInput.value || 0);
 
-        // ➤ صورة افتراضية فارغة لتجنب 400 Bad Request
-        const blob = new Blob(); // ملف فارغ
-        formData.append('image', blob, "empty.jpg");
+        formData.append("ArabicName", arabicNameInput.value);
+        formData.append("EnglishName", englishNameInput.value);
+        formData.append("Major", majorInput.value);
+        formData.append("Specilization", specilizationInput.value);
+
+        // الصورة (إجبارية)
+        if (imageInput.files.length === 0) {
+            alert("Please select a picture");
+            return;
+        }
+        formData.append("Picture", imageInput.files[0]);
 
         const url = editId
             ? `http://localhost:5184/api/Trainer/update/${editId}`
-            : 'http://localhost:5184/api/Trainer/add';
-        const method = editId ? 'PUT' : 'POST';
+            : "http://localhost:5184/api/Trainer/add";
 
-        fetch(url, {
-            method: method,
-            headers: {
-                'Authorization': `Bearer ${token}` // لا تضيف Content-Type، Browser يضيفها تلقائي للـ FormData
-            },
-            body: formData
-        })
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            return res.json();
-        })
-        .then(data => {
-            console.log('Trainer saved:', data);
-            fetchTrainers(); // إعادة تحميل الجدول فورًا
+        const method = editId ? "PUT" : "POST";
+
+        try {
+            const res = await fetch(url, {
+                method,
+                headers: { Authorization: `Bearer ${token}` },
+                body: formData
+            });
+
+            const text = await res.text();
+
+            if (!res.ok) {
+                console.error("Save trainer error:", text);
+                alert("Error saving trainer:\n" + text);
+                return;
+            }
+
             trainerModal.hide();
-        })
-        .catch(err => console.error('Error:', err));
+            fetchTrainers();
+
+        } catch (err) {
+            console.error("Network error:", err);
+            alert("Network error while saving trainer");
+        }
     });
 
-    // تعديل مدرب
+    // ==========================
+    // EDIT
+    // ==========================
     function editTrainer(id) {
         editId = id;
-        const trainer = trainers.find(t => t.id === id);
-        trainerIdInput.value = trainer.id;
-        nameInput.value = trainer.name;
-        specialtyInput.value = trainer.specialty;
-        phoneInput.value = trainer.phone;
-        ratingInput.value = trainer.rating ?? '';
+        const t = trainers.find(x => x.id === id);
+        nameInput.value = t.name;
+        specialtyInput.value = t.specialty;
+        ratingInput.value = t.rating ?? "";
+        imageInput.value = "";
         trainerModal.show();
     }
 
-    // حذف مدرب
-    function deleteTrainer(id) {
-        if (!confirm('هل تريد الحذف؟')) return;
+    // ==========================
+    // DELETE
+    // ==========================
+    async function deleteTrainer(id) {
+        if (!confirm("Delete trainer?")) return;
 
         const token = getToken();
-        if (!token) return alert("Token missing! Login first.");
+        if (!token) return;
 
-        fetch(`http://localhost:5184/api/Trainer/delete/${id}`, {
-            method: 'DELETE',
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        try {
+            const res = await fetch(`http://localhost:5184/api/Trainer/delete/${id}`, {
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                const text = await res.text();
+                console.error("Delete error:", text);
+                alert(text);
+                return;
+            }
+
             fetchTrainers();
-        })
-        .catch(err => console.error('Error:', err));
+        } catch (err) {
+            console.error("Network error:", err);
+            alert("Network error while deleting");
+        }
     }
 
-    // تحميل المدربين عند فتح الصفحة
     fetchTrainers();
 });

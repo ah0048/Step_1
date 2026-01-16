@@ -82,9 +82,9 @@
     <table class="table table-hover align-middle">
       <thead>
         <tr>
-          <th>الاسم</th>
+          <th> الاسم بالعربي</th>
+          <th>الاسم بالانجليزية</th>
           <th>التخصص</th>
-          <th>الهاتف</th>
           <th>التقييم</th>
           <th>إجراءات</th>
         </tr>
@@ -134,7 +134,7 @@
 
       <div class="modal-header">
         <h5 class="modal-title">مدرب</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close " data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
@@ -142,25 +142,29 @@
 
         <div class="row">
           <div class="col-md-6 mb-3">
-            <label class="form-label">الاسم</label>
-            <input class="form-control" id="name" required>
-          </div>
+  <label class="form-label">الاسم بالعربي</label>
+  <input class="form-control" id="arabicName" required>
+</div>
 
-          <div class="col-md-6 mb-3">
-            <label class="form-label">التخصص</label>
-            <input class="form-control" id="specialty" required>
-          </div>
+<div class="col-md-6 mb-3">
+  <label class="form-label">الاسم بالانجليزية</label>
+  <input class="form-control" id="englishName" required>
+</div>
 
-          <div class="col-md-6 mb-3">
-            <label class="form-label">الهاتف</label>
-            <input class="form-control" id="phone" required>
-          </div>
+<div class="col-md-6 mb-3">
+  <label class="form-label">Major</label>
+  <input class="form-control" id="major" required>
+</div>
 
-          <div class="col-md-6 mb-3">
-            <label class="form-label">التقييم</label>
-            <input class="form-control" type="number" min="1" max="5" step="0.1" id="rating">
-          </div>
+<div class="col-md-6 mb-3">
+  <label class="form-label">Specilization</label>
+  <input class="form-control" id="specilization" required>
+</div>
 
+          <div class="mb-3">
+                    <label for="image" class="form-label">Trainer Picture</label>
+                    <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+                  </div>
          
         </div>
       </div>
