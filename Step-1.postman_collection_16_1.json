@@ -1,0 +1,713 @@
+{
+  "info": {
+    "_postman_id": "6e946097-1620-4e3b-8bab-6aa18bfe39d9",
+    "name": "Step-1",
+    "description": "All responses are in this pattern :\n\n``` json\n{\n    \"data\": \"The new Package was added successfully !!\",\n    \"isSuccess\": true,\n    \"errorMessage\": null,\n    \"errors\": []\n}\n\n ```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46618184"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful POST request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"adminn\",\n  \"password\": \"Admin123%\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"Admin123%\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Trainer",
+      "item": [
+        {
+          "name": "get trainers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainer/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "all"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "get trainers Dashboard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainer/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "all"
+              ]
+            },
+            "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Successful DELETE request\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzQ0MTU2MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.1O7rP3zvbvkB-pzJlVury5lbphT8ZdhTn8KPagN5M9Q",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/trainer/delete/3",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "delete",
+                "3"
+              ]
+            },
+            "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+          },
+          "response": []
+        },
+        {
+          "name": "Add Trainer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzQ0MTU2MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.1O7rP3zvbvkB-pzJlVury5lbphT8ZdhTn8KPagN5M9Q",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "Picture",
+                  "type": "file",
+                  "uuid": "8496b040-ba40-42c0-9335-e63f83fddb8d",
+                  "src": "/C:/Users/SoftLaptop/Desktop/images.jpg"
+                },
+                {
+                  "key": "ArabicName",
+                  "value": "احمد علي",
+                  "type": "text",
+                  "uuid": "3f5ca83e-06b2-467c-96de-48bf1256c6ff"
+                },
+                {
+                  "key": "EnglishName",
+                  "value": "ahmed ali",
+                  "type": "text",
+                  "uuid": "66fa93ec-7e2f-4daf-82ec-d484bb87a959"
+                },
+                {
+                  "key": "Major",
+                  "value": "اخصائي تربية طفولة",
+                  "type": "text",
+                  "uuid": "367fcc93-6c96-46af-b713-035c64980e17"
+                },
+                {
+                  "key": "Specilization",
+                  "value": "تربية نوعية",
+                  "type": "text",
+                  "uuid": "382d4256-e057-4413-b2dc-a3a564cc3fa0"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/trainer/add",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "add"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit trainer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzQ0MTU2MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.1O7rP3zvbvkB-pzJlVury5lbphT8ZdhTn8KPagN5M9Q",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "TrainerId",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "02533bcf-c847-4aac-8502-e5a9a95f8966"
+                },
+                {
+                  "key": "Picture",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "0f72c70a-d319-49da-b9e8-8b79f9a02f84",
+                  "disabled": true
+                },
+                {
+                  "key": "ArabicName",
+                  "value": "احمد حرحش",
+                  "type": "text",
+                  "uuid": "a5851ec9-b729-4b66-9c8a-a625dcaff4d2"
+                },
+                {
+                  "key": "EnglishName",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "4853fa83-358b-4edb-9d95-3b7cf8fc4330",
+                  "disabled": true
+                },
+                {
+                  "key": "Major",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "25d4705c-dbbe-40da-be3b-51890a7a67c4",
+                  "disabled": true
+                },
+                {
+                  "key": "Specilization",
+                  "value": "",
+                  "type": "text",
+                  "uuid": "00326b3c-2340-4310-b532-dadf16de6710",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/trainer/edit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "edit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rate trainer",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"trainerId\": 3,\r\n  \"rating\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/trainer/rate",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "trainer",
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reservation",
+      "item": [
+        {
+          "name": "Add Reservation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"parentName\": \"خالد حرحش\",\r\n  \"childName\": \"يوسف خالد\",\r\n  \"phoneNumber\": \"01284014660\",\r\n  \"email\": \"khaled.fetoh@gmail.com\",\r\n  \"childAge\": 6,\r\n  \"trainerId\": 1,\r\n  \"subscription\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/reservation/add",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reservation",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Package",
+      "item": [
+        {
+          "name": "Add package",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzU1MzAwNiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.PcSOq-G1tNGwhTDY_f2uVXv8b5pz6KP1eg-U4oA5ArY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "Picture",
+                  "type": "file",
+                  "uuid": "7b1dd70d-626f-4df7-af7c-432ad0fe0884",
+                  "src": "/C:/Users/SoftLaptop/Desktop/package.webp"
+                },
+                {
+                  "key": "Title",
+                  "value": "انجليزي",
+                  "type": "text",
+                  "uuid": "91f58cdd-f0c1-46a2-b836-e362440b0171"
+                },
+                {
+                  "key": "Description",
+                  "value": "( بطاقات الحروف ) \n( بطاقات مسميات الاشياء ) \n( العاب بازل الحروف ) \n( كتيب تدريبات الحروف ) \n( بطاقات القراءه ) \n( ملف  قص ولصق ) \n( العاب حسيه )\n( معززات )",
+                  "type": "text",
+                  "uuid": "edef1e34-6833-42d3-b41e-5fe8db83e668"
+                },
+                {
+                  "key": "Price",
+                  "value": "200",
+                  "type": "text",
+                  "uuid": "e8d95010-68da-46ff-83be-2aee0e4a339f"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/package/add",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "add"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Package",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzU1MzAwNiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.PcSOq-G1tNGwhTDY_f2uVXv8b5pz6KP1eg-U4oA5ArY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "PackageId",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "b30e9d22-ac2b-4cb5-aac2-c5d2e920844e"
+                },
+                {
+                  "key": "Picture",
+                  "type": "file",
+                  "uuid": "feb11b11-f090-422f-849b-99b3d9c858b0",
+                  "src": "/C:/Users/SoftLaptop/Desktop/package.webp"
+                },
+                {
+                  "key": "Title",
+                  "value": "تنمية مهارات",
+                  "type": "text",
+                  "uuid": "3320060a-9534-43d1-9c12-a59db5236bb1"
+                },
+                {
+                  "key": "Description",
+                  "value": "( العاب تنمية المهارات) \n( كتيب البرنامج التمهيدي ) \n( كتيب ما قبل الاكاديمي ) \n( ماسكة القلم ) \n( معززات )",
+                  "type": "text",
+                  "uuid": "e5537576-920a-4efd-bb1e-dc06b5417a09"
+                },
+                {
+                  "key": "Price",
+                  "value": "50",
+                  "type": "text",
+                  "uuid": "67ca2f49-5a79-469f-96d8-340b83ba4d0e"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/package/edit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "edit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Packages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/package/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Packages Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/package/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Package",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2NzU1MzAwNiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.PcSOq-G1tNGwhTDY_f2uVXv8b5pz6KP1eg-U4oA5ArY",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/package/delete/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "delete",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Place Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"parentName\": \"خالد حرحش\",\r\n  \"childName\": \"يوسف\",\r\n  \"phoneNumber\": \"01284014660\",\r\n  \"email\": \"khaled.fetoh@gmail.com\",\r\n  \"packageId\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/package/place-order",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "package",
+                "place-order"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "paymob",
+      "item": [
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"api_key\": \"ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TVRFeE9USTFPQ3dpYm1GdFpTSTZJbWx1YVhScFlXd2lmUS5Ua1NuUExzeTV2UkZ2U3FCOTctMExmMGRzTTVPU2Z2MkhTUk9Mb3BVUFlWV2dQY2xrMk94V09iNS16NGluWlFiUDJfYUdtN19QcVZRMlczTC1mR2FfUQ==\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://accept.paymob.com/api/auth/tokens",
+              "protocol": "https",
+              "host": [
+                "accept",
+                "paymob",
+                "com"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "tokens"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImNkMDU0NWU1LTFjYjUtNDdmNS1iNzBjLTlkYmQ3NzYxMzkxZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbiIsImV4cCI6MTc2Nzk3OTU5MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE1NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjMwMDAifQ.ElOwUl6z0bRKzs8dEIUlPsi2a3WFX9IJxpXFGFmoxW4",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "key": "base_url",
+      "value": "https://template.postman-echo.com"
+    }
+  ]
+}

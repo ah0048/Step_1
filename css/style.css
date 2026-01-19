@@ -1220,36 +1220,17 @@ body {
   font-family: "Cairo", sans-serif;
 }
 
-.stars {
-  display: inline-flex;
-  gap: 5px;
-  font-size: 30px;
+
+.num {
   cursor: pointer;
+  padding: 6px 10px;
+  margin: 0 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.star {
-  color: #ddd;
-  transition: color 0.25s, transform 0.2s;
+.num.active {
+  background-color: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
 }
-
-/* التأثير عند المرور بالماوس */
-.star:hover,
-.star.hover {
-  transform: scale(1.2);
-}
-
-/* عند التمرير يتم تلوين النجوم حتى النجم المحدد */
-.stars:hover .star {
-  color: #ddd;
-}
-.stars:hover .star:hover,
-.stars:hover .star:hover ~ .star {
-  color: #ffcc00;
-}
-
-/* التقييم المثبت */
-.star.active,
-.star.active ~ .star {
-  color: #ffcc00;
-}
-
