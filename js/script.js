@@ -58,8 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <p class="counselor-specialty">${trainer.major}</p>
         <p class="counselor-specialty">${trainer.specilization}</p>
 
-        <div style="text-align: center; margin: 12px 0; font-size: 1.2rem; color: #ffc107; letter-spacing: 2px;">
-          ${stars}
+        <div style="text-align: center; margin: 12px 0;">
+          <div style="font-size: 1.2rem; color: #ffc107; letter-spacing: 2px; margin-bottom: 6px;">
+            ${stars}
+          </div>
+          <div style="font-size: 1rem; font-weight: 600; color: #ffc107;">
+            ${avgRating > 0 ? `${avgRating.toFixed(1)} / 5.0` : 'بدون تقييمات'}
+          </div>
         </div>
 
         <div class="number-rating" data-id="${trainer.id}">
@@ -70,10 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="num" data-rate="5">5</div>
         </div>
 
-       <button class="btn btn-sm btn-primary book-btn" 
+       <button class="trainer-book-btn" 
       data-id="${trainer.id}" 
       data-name="${trainer.arabicName}">
-      احجز
+      <i class="bi bi-calendar-check"></i> احجز معي
     </button>
       `;
 
@@ -82,9 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("book-btn")) {
-    const trainerId = e.target.dataset.id;
-    const trainerName = e.target.dataset.name;
+  if (e.target.closest(".trainer-book-btn")) {
+    const btn = e.target.closest(".trainer-book-btn");
+    const trainerId = btn.dataset.id;
+    const trainerName = btn.dataset.name;
     console.log('ass',e.target.dataset.id, e.target.dataset.name);
     console.log("TrainerId:", trainerId, "TrainerName:", trainerName); // ✅ debug
 
@@ -127,11 +133,23 @@ document.addEventListener("click", (e) => {
     });
 
     if (!res.ok) throw new Error("Rate failed");
+    
+    // Refresh trainers data after successful rating
+    setTimeout(() => {
+      fetchTrainers();
+    }, 500);
 
   } catch (err) {
     console.error("Rating failed", err);
   }
 });
+
+  // =============================
+  // Auto-refresh trainers every 10 seconds for live rating updates
+  // =============================
+  setInterval(() => {
+    fetchTrainers();
+  }, 10000);
 
   fetchTrainers();
 });

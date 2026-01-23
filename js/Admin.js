@@ -30,16 +30,45 @@ async function refreshDashboard() {
     if (!res.ok) throw new Error("فشل الحصول على البيانات من السيرفر");
 
     const data = await res.json();
-    console.log("Dashboard data:", data); // Debug log
+    console.log("=== FULL RAW DATA FROM API ===");
+    console.log(data);
+    console.log("=== TYPE OF DATA ===");
+    console.log(typeof data);
+    console.log("=== DATA.DATA (if nested) ===");
+    console.log(data.data);
+
+    // في حالة أن البيانات مغلفة في data.data
+    const actualData = data.data ?? data;
+    
+    console.log("=== ACTUAL DATA TO USE ===");
+    console.log(actualData);
+    console.log("=== ALL KEYS ===");
+    console.log(Object.keys(actualData));
 
     // تحديث القيم في الـ HTML
     const ordersCountEl = document.getElementById("ordersCount");
     const reservationsCountEl = document.getElementById("reservationsCount");
     const packagesCountEl = document.getElementById("packagesCount");
+    const trainersCountEl = document.getElementById("trainersCount");
 
-    if (ordersCountEl) ordersCountEl.textContent = data.orderCount ?? data.OrderCount ?? 0;
-    if (reservationsCountEl) reservationsCountEl.textContent = data.reservationCount ?? data.ReservationCount ?? 0;
-    if (packagesCountEl) packagesCountEl.textContent = data.packageCount ?? data.PackageCount ?? packages.length ?? 0;
+    // جرب جميع الاحتمالات مع البيانات المستخلصة
+    let orderCount = actualData.orderCount ?? actualData.OrderCount ?? actualData.orders ?? actualData.Orders ?? 0;
+    let reservationCount = actualData.reservationCount ?? actualData.ReservationCount ?? actualData.reservations ?? actualData.Reservations ?? actualData.bookingCount ?? actualData.BookingCount ?? 0;
+
+    console.log("✓ Final Order Count:", orderCount);
+    console.log("✓ Final Reservation Count:", reservationCount);
+
+    if (ordersCountEl) ordersCountEl.textContent = orderCount;
+    if (reservationsCountEl) reservationsCountEl.textContent = reservationCount;
+    
+    // استخدم البيانات المحلية للحزم والمدربين
+    if (packagesCountEl && typeof packages !== 'undefined') {
+      packagesCountEl.textContent = packages.length ?? 0;
+    }
+
+    if (trainersCountEl && typeof trainers !== 'undefined') {
+      trainersCountEl.textContent = trainers.length ?? 0;
+    }
 
   } catch (err) {
     console.error("حدث خطأ عند جلب بيانات الداشبورد:", err);
@@ -331,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       packages = data.data ?? data;
       renderPackageTable();
-      refreshDashboard();
+      // Don't call refreshDashboard here - it's called separately in setInterval
     } catch (err) {
       console.error(err);
       Swal.fire("خطأ", "فشل تحميل الحقائب", "error");
@@ -469,7 +498,15 @@ if (!result.isConfirmed) return;
   }
 
   fetchPackages();
+  fetchTrainers();
 
   // Call dashboard refresh on initial load
   refreshDashboard();
+
+  // =============================
+  // Auto-refresh dashboard every 5 seconds to show new orders/reservations
+  // =============================
+  setInterval(() => {
+    refreshDashboard();
+  }, 5000);
 });

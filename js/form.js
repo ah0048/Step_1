@@ -20,12 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!trainerInput || !submitBtn) return;
 
   if (!trainerId || !trainerName) {
-    Swal.fire("خطأ", "لم يتم اختيار مدرب", "error");
+    // Don't show error on page load, just disable the button
+    trainerInput.placeholder = "لم يتم اختيار مدرب - اختر من صفحة المدربين أولاً";
+    submitBtn.disabled = true;
+    submitBtn.title = "الرجاء اختيار مدرب أولاً";
     return;
   }
 
   // Set the trainer name in the form
   trainerInput.value = trainerName;
+  submitBtn.disabled = false;
 
   submitBtn.addEventListener("click", async () => {
    const payload = {
