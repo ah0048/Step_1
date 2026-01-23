@@ -78,39 +78,39 @@
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTrainerModal">
           Add Trainer
         </button>
-       <button id="loginBtn" class="btn btn-dark mb-3">
-  Admin Login
-</button>
-<!-- Login Modal -->
- <div class="modal fade" id="loginModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="loginForm">
-        <div class="modal-header">
-          <h5 class="modal-title">Admin Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
+        <button id="loginBtn" class="btn btn-dark mb-3">
+          Admin Login
+        </button>
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form id="loginForm">
+                <div class="modal-header">
+                  <h5 class="modal-title">Admin Login</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-        <div class="modal-body">
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" required>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+              </form>
+            </div>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" required>
-          </div>
         </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-primary" type="submit">Login</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!----------------login modal-------------------->  
+        <!----------------login modal-------------------->
 
         <!-- Bootstrap Modal -->
         <div class="modal fade" id="addTrainerModal" tabindex="-1" aria-labelledby="addTrainerModalLabel"
@@ -172,8 +172,8 @@
               <div class="num">5</div>
             </div>
 
-            <button class="btn btn-counselor">احجز موعد</button>
-            
+           <button class="book-btn" data-id="${trainer.id}" data-name="${trainer.arabicName}">احجز مع المدرب</button>
+
           </div>
 
         </div>
@@ -215,12 +215,13 @@
       </div>
     </div>
   </footer>
+  
   <script src="./js/main.js"></script>
   <script src="./js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

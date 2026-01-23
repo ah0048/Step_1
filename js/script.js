@@ -50,12 +50,31 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="num" data-rate="5">5</div>
         </div>
 
-        <button class="btn btn-counselor btn-primary">احجز موعد</button>
+       <button class="btn btn-sm btn-primary book-btn" 
+      data-id="${trainer.id}" 
+      data-name="${trainer.arabicName}">
+      احجز
+    </button>
       `;
 
       grid.appendChild(card);
     });
   }
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("book-btn")) {
+    const trainerId = e.target.dataset.id;
+    const trainerName = e.target.dataset.name;
+    console.log('ass',e.target.dataset.id, e.target.dataset.name);
+    console.log("TrainerId:", trainerId, "TrainerName:", trainerName); // ✅ debug
+
+    localStorage.setItem("selectedTrainerId", trainerId);
+    localStorage.setItem("selectedTrainerName", trainerName);
+
+    window.location.href = "form.html";
+  }
+});
+
 
   // =============================
   // Rating Click (Color + API)
@@ -95,4 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
   fetchTrainers();
+});
+
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("package-btn")) {
+    const packageId = e.target.dataset.id;
+    const packageName = e.target.dataset.name;
+
+    if (!packageId || !packageName) {
+      Swal.fire("خطأ", "لم يتم اختيار الباقة بشكل صحيح", "error");
+      return;
+    }
+
+    // حفظ البيانات مؤقتًا
+    localStorage.setItem("selectedPackageId", packageId);
+    localStorage.setItem("selectedPackageName", packageName);
+
+    // الانتقال لصفحة contact
+    window.location.href = "contact.html";
+  }
 });

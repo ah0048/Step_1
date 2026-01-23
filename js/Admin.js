@@ -1,23 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ==========================
+  // TOKEN
+  // ==========================
+  function getToken() {
+    return localStorage.getItem("token");
+  }
+
+  // ==========================
+  // ==========================
+  // LOGIN MODAL / ADD ADMIN
+  // ==========================
   const loginBtn = document.getElementById("loginBtn");
   const loginForm = document.getElementById("loginForm");
+  const loginModalEl = document.getElementById("loginModal");
+  const loginModal = new bootstrap.Modal(loginModalEl);
 
-  const modalEl = document.getElementById("loginModal");
-  const modal = new bootstrap.Modal(modalEl);
-
-  // فتح المودال
   loginBtn.addEventListener("click", () => {
     loginForm.reset();
-    modal.show();
+    loginModal.show();
   });
 
-  // إضافة Admin
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (!token) {
-      alert("You must be logged in as Admin");
+      Swal.fire("خطأ", "You must be logged in as Admin", "error");
       return;
     }
 
@@ -25,9 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value.trim();
 
     if (!username || !password) {
-      alert("Username and password are required");
+      Swal.fire("خطأ", "Username and password are required", "error");
       return;
     }
+
+    Swal.fire({
+      title: "جار الإضافة...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
     try {
       const res = await fetch("http://localhost:5184/api/Auth/register", {
@@ -36,44 +50,31 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await res.json();
-      console.log("Add admin response:", data);
 
       if (!res.ok || data.isSuccess === false) {
-        alert(data.errorMessage || "Failed to add admin");
+        Swal.fire("خطأ", data.errorMessage || "Failed to add admin", "error");
         return;
       }
 
-      alert("Admin added successfully ✅");
-      modal.hide();
+      Swal.fire("تم بنجاح ✅", "تم إضافة Admin بنجاح!", "success");
+      loginModal.hide();
     } catch (err) {
-      console.error("Network error:", err);
-      alert("Server error");
+      console.error(err);
+      Swal.fire("خطأ", "Server error", "error");
     }
   });
-});
 
-// ==========================
-// TOKEN
-// ==========================
-function getToken() {
-  return localStorage.getItem("token");
-}
-
-// ==========================
-// TRAINERS
-// ==========================
-document.addEventListener("DOMContentLoaded", () => {
+  // ==========================
+  // TRAINERS
+  // ==========================
   let trainers = [];
-  let editId = null;
+  let editTrainerId = null;
 
-  const table = document.getElementById("trainersTable");
+  const trainerTable = document.getElementById("trainersTable");
   const trainersCount = document.getElementById("trainersCount");
   const trainerForm = document.getElementById("trainerForm");
   const trainerModal = new bootstrap.Modal(
@@ -84,266 +85,181 @@ document.addEventListener("DOMContentLoaded", () => {
   const englishNameInput = document.getElementById("englishName");
   const majorInput = document.getElementById("major");
   const specilizationInput = document.getElementById("specilization");
-  const imageInput = document.getElementById("image");
+  const trainerImageInput = document.getElementById("image");
 
-  // ==========================
-  // ADD MODAL
-  // ==========================
   document.getElementById("addTrainerBtn").addEventListener("click", () => {
-    editId = null;
+    editTrainerId = null;
     trainerForm.reset();
     trainerModal.show();
   });
 
-  // ==========================
-  // FETCH TRAINERS
-  // ==========================
   async function fetchTrainers() {
     const token = getToken();
     if (!token) return;
 
     try {
       const res = await fetch("http://localhost:5184/api/Trainer/all", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
-
-      if (!res.ok) {
-        throw new Error(`HTTP error ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
 
       const data = await res.json();
-
-      console.log("API response:", data);
-
-      // لو الـ API بيرجع isSuccess
       trainers = data.data ?? data;
-
-      renderTable();
+      renderTrainerTable();
     } catch (err) {
-      console.error("Fetch trainers error:", err);
-      alert("Failed to load trainers");
+      console.error(err);
+      Swal.fire("خطأ", "Failed to load trainers", "error");
     }
   }
 
-  // ==========================
-  // RENDER TABLE
-  // ==========================
-  function renderTable() {
-    table.innerHTML = "";
-
-    trainers.forEach((trainer) => {
-      const rating = trainer.averageRating ?? 0;
+  function renderTrainerTable() {
+    trainerTable.innerHTML = "";
+    trainers.forEach((t) => {
+      const rating = t.averageRating ?? 0;
       const stars = "★".repeat(Math.round(rating));
 
       const row = document.createElement("tr");
       row.innerHTML = `
-      <td>${trainer.arabicName}</td>
-      <td>${trainer.englishName}</td>
-      <td>${trainer.major}</td>
-      <td>
-        <span style="margin-right:5px;">${rating}</span>
-        <span class="stars" style="color: gold;">${stars}</span>
-      </td>
-      <td>
-        <button class="btn btn-sm btn-warning edit-btn">✏️</button>
-        <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
-      </td>
-    `;
+        <td>${t.arabicName}</td>
+        <td>${t.englishName}</td>
+        <td>${t.major}</td>
+        <td><span style="margin-right:5px;">${rating}</span>
+        <span class="stars" style="color: gold;">${stars}</span></td>
+        <td>
+          <button class="btn btn-sm btn-warning edit-btn">✏️</button>
+          <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
+        </td>
+      `;
+      row.querySelector(".edit-btn").onclick = () => editTrainer(t.id);
+      row.querySelector(".delete-btn").onclick = () => deleteTrainer(t.id);
 
-      row.querySelector(".edit-btn").onclick = () => editTrainer(trainer.id);
-      row.querySelector(".delete-btn").onclick = () =>
-        deleteTrainer(trainer.id);
-
-      table.appendChild(row);
+      trainerTable.appendChild(row);
     });
 
     trainersCount.innerText = trainers.length;
   }
 
-  window.addEventListener("storage", (e) => {
-    if (e.key === "refreshTrainers") {
-      fetchTrainers(); // يعيد تحميل الجدول
-    }
-  });
-  // ==========================
-  // ADD / UPDATE TRAINER
-  // ==========================
   trainerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const token = getToken();
-    if (!token) {
-      alert("Please login first");
-      return;
-    }
+    if (!token) return Swal.fire("خطأ", "الرجاء تسجيل الدخول أولاً", "error");
 
-    if (!editId && imageInput.files.length === 0) {
-      alert("Please select a picture");
-      return;
+    if (!editTrainerId && trainerImageInput.files.length === 0) {
+      return Swal.fire("خطأ", "الرجاء اختيار صورة", "error");
     }
 
     const formData = new FormData();
-
-    if (editId) formData.append("TrainerId", editId);
-    console.log("Submitting trainer data:");
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+    if (editTrainerId) formData.append("TrainerId", editTrainerId);
 
     formData.append("ArabicName", arabicNameInput.value.trim());
     formData.append("EnglishName", englishNameInput.value.trim());
     formData.append("Major", majorInput.value.trim());
     formData.append("Specilization", specilizationInput.value.trim());
+    if (trainerImageInput.files.length > 0)
+      formData.append("Picture", trainerImageInput.files[0]);
 
-    if (imageInput.files.length > 0) {
-      formData.append("Picture", imageInput.files[0]);
-    }
-
-    const url = editId
-      ? "http://localhost:5184/api/Trainer/edit" // ← endpoint الجديد
+    const url = editTrainerId
+      ? "http://localhost:5184/api/Trainer/edit"
       : "http://localhost:5184/api/Trainer/add";
+    const method = editTrainerId ? "PUT" : "POST";
 
-    const method = editId ? "PUT" : "POST";
+    Swal.fire({
+      title: editTrainerId ? "جار تعديل المدرب..." : "جار إضافة المدرب...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
     try {
-      console.log("Submitting trainer data:", [...formData]);
-
       const res = await fetch(url, {
         method,
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
       });
 
-      let resultText = await res.text();
-      console.log("Raw response text:", resultText);
+      const result = await res.json();
 
-      let result;
-      try {
-        result = JSON.parse(resultText);
-      } catch {
-        result = resultText;
-      }
-
-      if (!res.ok) {
-        console.error("Save trainer error:", result);
-        alert(
-          "Error saving trainer:\n" +
-            (result.errorMessage || JSON.stringify(result))
-        );
+      if (!res.ok || result.isSuccess === false) {
+        Swal.fire("خطأ", result.errorMessage || "حدث خطأ", "error");
         return;
       }
 
-      alert("Trainer saved successfully!");
+      Swal.fire(
+        "تم بنجاح ✅",
+        editTrainerId ? "تم تعديل المدرب بنجاح!" : "تم إضافة المدرب بنجاح!",
+        "success"
+      );
+
       trainerModal.hide();
+      trainerForm.reset();
       fetchTrainers();
     } catch (err) {
-      console.error("Network error while saving trainer:", err);
-      alert("Network error while saving trainer");
+      console.error(err);
+      Swal.fire("خطأ", "حدث خطأ في الاتصال بالخادم", "error");
     }
   });
 
-  // ==========================
-  // EDIT
-  // ==========================
-  // عند تعديل مدرب
   function editTrainer(id) {
-    editId = id;
-    console.log("Edit ID set to:", editId);
+    editTrainerId = id;
     const t = trainers.find((tr) => tr.id === id);
-    if (!t) {
-      alert("Trainer not found!");
-      return;
-    }
+    if (!t) return Swal.fire("خطأ", "Trainer not found", "error");
 
     arabicNameInput.value = t.arabicName ?? "";
     englishNameInput.value = t.englishName ?? "";
     majorInput.value = t.major ?? "";
     specilizationInput.value = t.specilization ?? "";
-
-    // الصورة مش إجبارية في التعديل
-    imageInput.value = "";
+    trainerImageInput.value = "";
 
     trainerModal._element.querySelector(".modal-title").innerText =
       "تعديل مدرب";
     trainerModal.show();
-
-    console.log("Editing trainer:", t);
   }
 
-  // ==========================
-  // DELETE
-  // ==========================
   async function deleteTrainer(id) {
-    if (!confirm("Delete trainer?")) return;
+    if (!confirm("هل تريد حذف هذا المدرب؟")) return;
 
     const token = getToken();
     if (!token) return;
 
     try {
-      const res = await fetch(
-        `http://localhost:5184/api/Trainer/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await fetch(`http://localhost:5184/api/Trainer/delete/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("Delete error:", text);
-        alert(text);
-        return;
-      }
-
+      if (!res.ok) throw new Error(await res.text());
       fetchTrainers();
     } catch (err) {
-      console.error("Network error:", err);
-      alert("Network error while deleting");
+      console.error(err);
+      Swal.fire("خطأ", "حدث خطأ أثناء الحذف", "error");
     }
   }
 
   fetchTrainers();
-});
 
+  // ==========================
+  // PACKAGES
+  // ==========================
+  let packages = [];
+  let editPackageId = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-  // العناصر
   const packageTable = document.getElementById("PackageTable");
   const packageForm = document.getElementById("PackageForm");
   const addPackageBtn = document.getElementById("addPackageBtn");
-  const packageModalEl = document.getElementById("PackageModal");
-  const packageModal = new bootstrap.Modal(packageModalEl);
+  const packageModal = new bootstrap.Modal(document.getElementById("PackageModal"));
 
   const packageIdInput = document.getElementById("PackageId");
   const packageNameInput = document.getElementById("Packagename");
   const descriptionInput = document.getElementById("Description");
   const priceInput = document.getElementById("Price");
-  const imageInput = document.getElementById("Picture");
+  const packageImageInput = document.getElementById("Picture");
 
-  let packages = [];
-  let editId = null;
-
-  // ==========================
-  // TOKEN
-  // ==========================
-  function getToken() {
-    return localStorage.getItem("token");
-  }
-
-  // ==========================
-  // فتح الفورم للإضافة
-  // ==========================
   addPackageBtn.addEventListener("click", () => {
-    editId = null;
+    editPackageId = null;
     packageForm.reset();
     packageModal.show();
   });
 
-  // ==========================
-  // جلب الحقائب من API
-  // ==========================
   async function fetchPackages() {
     const token = getToken();
     if (!token) return;
@@ -357,24 +273,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
       packages = data.data ?? data;
-
-      renderPackages();
+      renderPackageTable();
     } catch (err) {
       console.error(err);
-      alert("Error fetching packages");
+      Swal.fire("خطأ", "فشل تحميل الحقائب", "error");
     }
   }
 
-  // ==========================
-  // عرض الحقائب في الجدول
-  // ==========================
-  function renderPackages() {
+  function renderPackageTable() {
     packageTable.innerHTML = "";
 
     packages.forEach((pkg) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${pkg.packageName}</td>
+        <td>${pkg.title}</td>
         <td>${pkg.description}</td>
         <td>${pkg.price}</td>
         <td>
@@ -382,47 +294,41 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
         </td>
       `;
-
       row.querySelector(".edit-btn").onclick = () => editPackage(pkg.id);
       row.querySelector(".delete-btn").onclick = () => deletePackage(pkg.id);
-
       packageTable.appendChild(row);
     });
   }
 
-  // ==========================
-  // إضافة / تعديل حقيبة
-  // ==========================
   packageForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const token = getToken();
-    if (!token) {
-      alert("Please login first");
-      return;
+    if (!token) return Swal.fire("خطأ", "الرجاء تسجيل الدخول أولاً", "error");
+
+    if (!editPackageId && packageImageInput.files.length === 0) {
+      return Swal.fire("خطأ", "الرجاء اختيار صورة", "error");
     }
 
     const formData = new FormData();
-    if (editId) formData.append("packageId", editId);
+    if (editPackageId) formData.append("packageId", editPackageId);
 
-    formData.append("packageName", packageNameInput.value.trim());
+    formData.append("title", packageNameInput.value.trim());
     formData.append("description", descriptionInput.value.trim());
     formData.append("price", priceInput.value.trim());
 
-    // الصورة إلزامية عند الإضافة
-    if (!editId && imageInput.files.length === 0) {
-      alert("Please select an image");
-      return;
-    }
+    if (packageImageInput.files.length > 0) formData.append("picture", packageImageInput.files[0]);
 
-    if (imageInput.files.length > 0) {
-      formData.append("picture", imageInput.files[0]);
-    }
+    const url = editPackageId
+      ? `http://localhost:5184/api/Package/edit`
+      : `http://localhost:5184/api/Package/add`;
+    const method = editPackageId ? "PUT" : "POST";
 
-    const url = editId
-      ? "http://localhost:5184/api/Package/edit"
-      : "http://localhost:5184/api/Package/add";
-    const method = editId ? "PUT" : "POST";
+    Swal.fire({
+      title: editPackageId ? "جار تعديل الحقيبة..." : "جار إضافة الحقيبة...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
     try {
       const res = await fetch(url, {
@@ -431,42 +337,54 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData,
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text);
+      const result = await res.json();
+
+      if (!res.ok || result.isSuccess === false) {
+        Swal.fire("خطأ", result.errorMessage || "حدث خطأ", "error");
+        return;
       }
+
+      Swal.fire(
+        "تم بنجاح ✅",
+        editPackageId ? "تم تعديل الحقيبة بنجاح!" : "تم إضافة الحقيبة بنجاح!",
+        "success"
+      );
 
       packageModal.hide();
       packageForm.reset();
       fetchPackages();
     } catch (err) {
       console.error(err);
-      alert("Error saving package");
+      Swal.fire("خطأ", "حدث خطأ في الاتصال بالخادم", "error");
     }
   });
 
-  // ==========================
-  // تعديل الحقيبة
-  // ==========================
   function editPackage(id) {
-    editId = id;
-    const pkg = packages.find((p) => p.id === id);
-    if (!pkg) return;
+    editPackageId = id;
+    const pkg = packages.find((p) => p.id == id);
+    if (!pkg) return Swal.fire("خطأ", "Package not found", "error");
 
     packageIdInput.value = pkg.id;
-    packageNameInput.value = pkg.packageName;
+    packageNameInput.value = pkg.title;
     descriptionInput.value = pkg.description;
     priceInput.value = pkg.price;
+    packageImageInput.value = "";
 
-    imageInput.value = ""; // الصورة اختيارية عند التعديل
     packageModal.show();
   }
 
-  // ==========================
-  // حذف الحقيبة
-  // ==========================
   async function deletePackage(id) {
-    if (!confirm("Are you sure you want to delete this package?")) return;
+  const result = await Swal.fire({
+  title: "تأكيد الحذف",
+  text: "هل أنت متأكد؟ لا يمكن التراجع!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "نعم، احذف",
+  cancelButtonText: "إلغاء",
+});
+
+if (!result.isConfirmed) return;
+
 
     const token = getToken();
     if (!token) return;
@@ -476,20 +394,15 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text);
-      }
+      if (!res.ok) throw new Error(await res.text());
 
       fetchPackages();
     } catch (err) {
       console.error(err);
-      alert("Error deleting package");
+      Swal.fire("خطأ", "حدث خطأ أثناء الحذف", "error");
     }
   }
 
   fetchPackages();
 });
-
 
