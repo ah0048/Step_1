@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // API Configuration
+  const API_CONFIG = {
+    TRAINER_ALL: 'http://localhost:5184/api/Trainer/all',
+    TRAINER_RATE: 'http://localhost:5184/api/Trainer/rate'
+  };
 
   const grid = document.querySelector(".counselors-grid");
   let trainers = [];
@@ -8,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =============================
   async function fetchTrainers() {
     try {
-      const res = await fetch("http://localhost:5184/api/Trainer/all");
+      const res = await fetch(API_CONFIG.TRAINER_ALL);
       if (!res.ok) throw new Error("Failed");
 
       const data = await res.json();
@@ -31,7 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "counselor-card";
       card.dataset.id = trainer.id;
 
+      // Display average rating with stars
+      const avgRating = trainer.averageRating ?? 0;
+      const stars = "★".repeat(Math.round(avgRating)) + "☆".repeat(5 - Math.round(avgRating));
+      const ratingDisplay = avgRating > 0 ? `
+        <div class="counselor-rating">
+          <span style="font-size: 1.1rem; margin-right: 5px;">⭐</span>
+          <span>${avgRating.toFixed(1)}</span>
+        </div>
+      ` : '';
+
       card.innerHTML = `
+        ${ratingDisplay}
         <img src="${trainer.pictureUrl || './Images/default.jpg'}"
              alt="${trainer.arabicName}"
              class="counselor-img">
@@ -41,6 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <p class="counselor-specialty">${trainer.major}</p>
         <p class="counselor-specialty">${trainer.specilization}</p>
+
+        <div style="text-align: center; margin: 12px 0; font-size: 1.2rem; color: #ffc107; letter-spacing: 2px;">
+          ${stars}
+        </div>
 
         <div class="number-rating" data-id="${trainer.id}">
           <div class="num" data-rate="1">1</div>
@@ -97,7 +117,7 @@ document.addEventListener("click", (e) => {
   e.target.classList.add("active");
 
   try {
-    const res = await fetch("http://localhost:5184/api/Trainer/rate", {
+    const res = await fetch(API_CONFIG.TRAINER_RATE, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

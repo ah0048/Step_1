@@ -1,9 +1,14 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  // API Configuration
+  const API_CONFIG = {
+    PACKAGE_ALL: 'http://localhost:5184/api/Package/all'
+  };
+
   const storeContainer = document.getElementById("storePackages");
   if (!storeContainer) return;
 
   try {
-    const res = await fetch("http://localhost:5184/api/Package/all");
+    const res = await fetch(API_CONFIG.PACKAGE_ALL);
     const data = await res.json();
     const packages = data.data ?? data;
 

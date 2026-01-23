@@ -1,18 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // API Configuration
+  const API_CONFIG = {
+    PACKAGE_PLACE_ORDER: 'http://localhost:5184/api/Package/place-order'
+  };
+
   const packageId = localStorage.getItem("selectedPackageId");
   const packageName = localStorage.getItem("selectedPackageName");
 
   const packageInput = document.getElementById("packageName");
-  if (!packageInput) return;
+  const submitBtn = document.getElementById("submitPackage");
+  
+  if (!packageInput || !submitBtn) return;
 
+  // إذا لم يتم اختيار باقة، فقط فعّل الزر عند ملء البيانات
   if (!packageId || !packageName) {
-    Swal.fire("خطأ", "لم يتم اختيار الباقة", "error");
+    packageInput.placeholder = "لم يتم اختيار باقة - اختر من المتجر أولاً";
+    submitBtn.disabled = true;
+    submitBtn.title = "الرجاء اختيار باقة من المتجر أولاً";
     return;
   }
 
   packageInput.value = packageName;
+  submitBtn.disabled = false;
 
   document.getElementById("submitPackage").addEventListener("click", async () => {
+    // التحقق مرة أخرى من اختيار الباقة
+    if (!packageId || !packageName) {
+      Swal.fire("تنبيه", "الرجاء اختيار باقة من المتجر أولاً", "warning");
+      return;
+    }
+
     const payload = {
       parentName: document.getElementById("userName").value.trim(),
       childName: document.getElementById("childName").value.trim(),
@@ -33,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     try {
-      const res = await fetch("http://localhost:5184/api/Package/place-order", {
+      const res = await fetch(API_CONFIG.PACKAGE_PLACE_ORDER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

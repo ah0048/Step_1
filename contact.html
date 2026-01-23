@@ -7,7 +7,9 @@
   <title>التواصل</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/contact.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
@@ -65,56 +67,94 @@
       </div>
     </nav>
   </header>
-  <section id="contact" class="section">
+  <section id="contact" class="section contact-section">
     <div class="container">
-      <h1 class="page-title" data-translate="contact-title">تواصل معنا</h1>
-      <p class="page-subtitle" data-translate="contact-subtitle">نحن هنا للإجابة على استفساراتك ومساعدتك في رحلة طفلك
-      </p>
+      <div class="section-header text-center mb-5">
+        <h1 class="page-title" data-translate="contact-title">تواصل معنا</h1>
+        <p class="page-subtitle" data-translate="contact-subtitle">نحن هنا للإجابة على استفساراتك ومساعدتك في رحلة طفلك</p>
+      </div>
 
-      <div class="contact-content">
-        <div class="contact-form-container">
-          <form id="packageForm">
-  <div class="mb-3">
-    <label for="userName">اسم ولي الأمر</label>
-    <input type="text" id="userName" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label for="childName">اسم الطفل</label>
-    <input type="text" id="childName" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label for="userPhone">رقم الهاتف</label>
-    <input type="tel" id="userPhone" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label for="userEmail">البريد الإلكتروني</label>
-    <input type="email" id="userEmail" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label for="packageName">اسم الباقة</label>
-    <input type="text" id="packageName" class="form-control" readonly>
-  </div>
-  <button type="button" id="submitPackage" class="btn btn-primary">إرسال الطلب</button>
-</form>
+      <div class="row g-4 contact-content">
+        <!-- Form Section -->
+        <div class="col-12">
+          <div class="contact-form-container">
+            <h2 class="form-title">نموذج الطلب</h2>
+            <form id="packageForm" class="contact-form">
+              <div class="mb-3">
+                <label for="userName" class="form-label">اسم ولي الأمر</label>
+                <input type="text" id="userName" class="form-control" placeholder="أدخل الاسم الكامل" required>
+              </div>
+              <div class="mb-3">
+                <label for="childName" class="form-label">اسم الطفل</label>
+                <input type="text" id="childName" class="form-control" placeholder="أدخل اسم الطفل" required>
+              </div>
+              <div class="mb-3">
+                <label for="userPhone" class="form-label">رقم الهاتف</label>
+                <input type="tel" id="userPhone" class="form-control" placeholder="أدخل رقم الهاتف" required>
+              </div>
+              <div class="mb-3">
+                <label for="userEmail" class="form-label">البريد الإلكتروني</label>
+                <input type="email" id="userEmail" class="form-control" placeholder="أدخل البريد الإلكتروني" required>
+              </div>
+              <div class="mb-3">
+                <label for="packageName" class="form-label">اسم الباقة</label>
+                <input type="text" id="packageName" class="form-control" readonly>
+              </div>
+              <button type="button" id="submitPackage" class="btn btn-primary btn-lg w-100">
+                <i class="bi bi-send"></i> إرسال الطلب
+              </button>
+            </form>
+          </div>
+        </div>
 
-
+        <!-- Info Section -->
+        <div class="col-12">
           <div class="contact-info">
+            <h2 class="form-title">تواصل معنا</h2>
+            
             <div class="contact-card">
-              <div class="contact-icon">📧</div>
-              <h3 data-translate="email-us">راسلنا</h3>
-              <p>info@step1.com</p>
+              <div class="contact-icon">
+                <i class="bi bi-envelope-fill"></i>
+              </div>
+              <div class="contact-card-content">
+                <h3 data-translate="email-us">راسلنا</h3>
+                <p><a href="mailto:info@step1.com">info@step1.com</a></p>
+              </div>
             </div>
 
             <div class="contact-card">
-              <div class="contact-icon">📱</div>
-              <h3 data-translate="call-us">اتصل بنا</h3>
-              <p>+20 201553212342</p>
+              <div class="contact-icon">
+                <i class="bi bi-telephone-fill"></i>
+              </div>
+              <div class="contact-card-content">
+                <h3 data-translate="call-us">اتصل بنا</h3>
+                <p><a href="tel:+201553212342">+20 201553212342</a></p>
+              </div>
             </div>
 
             <div class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h3 data-translate="visit-us">زرنا</h3>
-              <p data-translate="address">الرياض، المملكة العربية السعودية</p>
+              <div class="contact-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div class="contact-card-content">
+                <h3 data-translate="visit-us">زرنا</h3>
+                <p data-translate="address">الرياض، المملكة العربية السعودية</p>
+              </div>
+            </div>
+
+            <div class="contact-card social-card">
+              <h3>تابعنا على وسائل التواصل</h3>
+              <div class="social-links">
+                <a href="https://wa.me/201553212342" class="social-link whatsapp" title="WhatsApp">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1B1ZKkNukT/" class="social-link facebook" title="Facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com" class="social-link instagram" title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -158,6 +198,7 @@
   </footer>
   <script src="./js/script.js"></script>
   <script src="./js/contact.js"></script>
+  <script src="./js/navbar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>

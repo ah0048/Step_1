@@ -2,6 +2,11 @@
 
 
 
+// API Configuration
+const API_CONFIG = {
+  RESERVATION_ADD: 'http://localhost:5184/api/Reservation/add'
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const trainerId = localStorage.getItem("selectedTrainerId");
   const trainerName = localStorage.getItem("selectedTrainerName");
@@ -58,7 +63,7 @@ console.log({
     });
 
     try {
-      const res = await fetch("http://localhost:5184/api/Reservation/add", {
+      const res = await fetch(API_CONFIG.RESERVATION_ADD, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

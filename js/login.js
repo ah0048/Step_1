@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // API Configuration
+    const API_CONFIG = {
+        AUTH_LOGIN: 'http://localhost:5184/api/Auth/login'
+    };
 
     const form = document.getElementById("loginForm");
     const errorBox = document.getElementById("errorBox");
@@ -12,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById("password").value.trim();
 
         try {
-            const res = await fetch("http://localhost:5184/api/Auth/login", {
+            const res = await fetch(API_CONFIG.AUTH_LOGIN, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password })
@@ -22,20 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Login response:", data);
 
             if (!res.ok || data.isSuccess === false) {
-                errorBox.innerText = data.errorMessage || "Invalid username or password";
-                errorBox.classList.remove("d-none");
+                Swal.fire("خطأ", data.errorMessage || "Invalid username or password", "error");
                 return;
             }
 
             localStorage.setItem("token", data.data);
-
-            // التحويل
-            window.location.href = "Admin.html";
+            Swal.fire("تم بنجاح ✅", "تم تسجيل الدخول بنجاح!", "success").then(() => {
+                window.location.href = "Admin.html";
+            });
 
         } catch (err) {
             console.error(err);
-            errorBox.innerText = "Server error";
-            errorBox.classList.remove("d-none");
+            Swal.fire("خطأ", "Server error", "error");
         }
     });
 

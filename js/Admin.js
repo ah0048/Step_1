@@ -1,3 +1,51 @@
+
+// API Configuration
+const API_CONFIG = {
+  DASHBOARD: 'http://localhost:5184/api/Dashboard',
+  AUTH_REGISTER: 'http://localhost:5184/api/Auth/register',
+  TRAINER_ALL: 'http://localhost:5184/api/Trainer/all',
+  TRAINER_ADD: 'http://localhost:5184/api/Trainer/add',
+  TRAINER_EDIT: 'http://localhost:5184/api/Trainer/edit',
+  TRAINER_DELETE: 'http://localhost:5184/api/Trainer/delete',
+  PACKAGE_ALL: 'http://localhost:5184/api/Package/all',
+  PACKAGE_ADD: 'http://localhost:5184/api/Package/add',
+  PACKAGE_EDIT: 'http://localhost:5184/api/Package/edit',
+  PACKAGE_DELETE: 'http://localhost:5184/api/Package/delete'
+};
+
+// ==========================
+// DASHBOARD REFRESH FUNCTION
+// ==========================
+async function refreshDashboard() {
+  try {
+    const token = localStorage.getItem("token");
+    const headers = {};
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    const res = await fetch(API_CONFIG.DASHBOARD, {
+      headers: headers
+    });
+    if (!res.ok) throw new Error("فشل الحصول على البيانات من السيرفر");
+
+    const data = await res.json();
+    console.log("Dashboard data:", data); // Debug log
+
+    // تحديث القيم في الـ HTML
+    const ordersCountEl = document.getElementById("ordersCount");
+    const reservationsCountEl = document.getElementById("reservationsCount");
+    const packagesCountEl = document.getElementById("packagesCount");
+
+    if (ordersCountEl) ordersCountEl.textContent = data.orderCount ?? data.OrderCount ?? 0;
+    if (reservationsCountEl) reservationsCountEl.textContent = data.reservationCount ?? data.ReservationCount ?? 0;
+    if (packagesCountEl) packagesCountEl.textContent = data.packageCount ?? data.PackageCount ?? packages.length ?? 0;
+
+  } catch (err) {
+    console.error("حدث خطأ عند جلب بيانات الداشبورد:", err);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // ==========================
   // TOKEN
@@ -44,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     try {
-      const res = await fetch("http://localhost:5184/api/Auth/register", {
+      const res = await fetch(API_CONFIG.AUTH_REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://localhost:5184/api/Trainer/all", {
+      const res = await fetch(API_CONFIG.TRAINER_ALL, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
@@ -160,8 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append("Picture", trainerImageInput.files[0]);
 
     const url = editTrainerId
-      ? "http://localhost:5184/api/Trainer/edit"
-      : "http://localhost:5184/api/Trainer/add";
+      ? API_CONFIG.TRAINER_EDIT
+      : API_CONFIG.TRAINER_ADD;
     const method = editTrainerId ? "PUT" : "POST";
 
     Swal.fire({
@@ -216,13 +264,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function deleteTrainer(id) {
-    if (!confirm("هل تريد حذف هذا المدرب؟")) return;
+    const result = await Swal.fire({
+      title: "تأكيد الحذف",
+      text: "هل تريد حذف هذا المدرب؟",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "نعم، احذف",
+      cancelButtonText: "إلغاء",
+    });
+
+    if (!result.isConfirmed) return;
 
     const token = getToken();
     if (!token) return;
 
     try {
-      const res = await fetch(`http://localhost:5184/api/Trainer/delete/${id}`, {
+      const res = await fetch(`${API_CONFIG.TRAINER_DELETE}/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -265,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://localhost:5184/api/Package/all", {
+      const res = await fetch(API_CONFIG.PACKAGE_ALL, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -274,6 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       packages = data.data ?? data;
       renderPackageTable();
+      refreshDashboard();
     } catch (err) {
       console.error(err);
       Swal.fire("خطأ", "فشل تحميل الحقائب", "error");
@@ -298,6 +356,12 @@ document.addEventListener("DOMContentLoaded", () => {
       row.querySelector(".delete-btn").onclick = () => deletePackage(pkg.id);
       packageTable.appendChild(row);
     });
+
+    // تحديث عدد الحقائب محلياً
+    const packagesCountEl = document.getElementById("packagesCount");
+    if (packagesCountEl) {
+      packagesCountEl.textContent = packages.length;
+    }
   }
 
   packageForm.addEventListener("submit", async (e) => {
@@ -320,8 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (packageImageInput.files.length > 0) formData.append("picture", packageImageInput.files[0]);
 
     const url = editPackageId
-      ? `http://localhost:5184/api/Package/edit`
-      : `http://localhost:5184/api/Package/add`;
+      ? API_CONFIG.PACKAGE_EDIT
+      : API_CONFIG.PACKAGE_ADD;
     const method = editPackageId ? "PUT" : "POST";
 
     Swal.fire({
@@ -353,6 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
       packageModal.hide();
       packageForm.reset();
       fetchPackages();
+      refreshDashboard();
     } catch (err) {
       console.error(err);
       Swal.fire("خطأ", "حدث خطأ في الاتصال بالخادم", "error");
@@ -390,7 +455,7 @@ if (!result.isConfirmed) return;
     if (!token) return;
 
     try {
-      const res = await fetch(`http://localhost:5184/api/Package/delete/${id}`, {
+      const res = await fetch(`${API_CONFIG.PACKAGE_DELETE}/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -404,5 +469,7 @@ if (!result.isConfirmed) return;
   }
 
   fetchPackages();
-});
 
+  // Call dashboard refresh on initial load
+  refreshDashboard();
+});
