@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   // API Configuration
   const API_CONFIG = {
-    PACKAGE_ALL: 'http://localhost:5184/api/Package/all'
+    PACKAGE_ALL: `${import.meta.env.VITE_API_BASE_URL}/Package/all`
   };
 
   const storeContainer = document.getElementById("storePackages");

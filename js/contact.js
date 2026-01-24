@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // API Configuration
   const API_CONFIG = {
-    PACKAGE_PLACE_ORDER: 'http://localhost:5184/api/Package/place-order'
+    PACKAGE_PLACE_ORDER: `${import.meta.env.VITE_API_BASE_URL}/Package/place-order`
   };
 
   const packageId = localStorage.getItem("selectedPackageId");

@@ -4,7 +4,7 @@
 
 // API Configuration
 const API_CONFIG = {
-  RESERVATION_ADD: 'http://localhost:5184/api/Reservation/add'
+  RESERVATION_ADD: `${import.meta.env.VITE_API_BASE_URL}/Reservation/add`
 };
 
 document.addEventListener("DOMContentLoaded", () => {

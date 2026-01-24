@@ -1,16 +1,16 @@
 
 // API Configuration
 const API_CONFIG = {
-  DASHBOARD: 'http://localhost:5184/api/Dashboard',
-  AUTH_REGISTER: 'http://localhost:5184/api/Auth/register',
-  TRAINER_ALL: 'http://localhost:5184/api/Trainer/all',
-  TRAINER_ADD: 'http://localhost:5184/api/Trainer/add',
-  TRAINER_EDIT: 'http://localhost:5184/api/Trainer/edit',
-  TRAINER_DELETE: 'http://localhost:5184/api/Trainer/delete',
-  PACKAGE_ALL: 'http://localhost:5184/api/Package/all',
-  PACKAGE_ADD: 'http://localhost:5184/api/Package/add',
-  PACKAGE_EDIT: 'http://localhost:5184/api/Package/edit',
-  PACKAGE_DELETE: 'http://localhost:5184/api/Package/delete'
+  DASHBOARD: `${import.meta.env.VITE_API_BASE_URL}/Dashboard`,
+  AUTH_REGISTER: `${import.meta.env.VITE_API_BASE_URL}/Auth/register`,
+  TRAINER_ALL: `${import.meta.env.VITE_API_BASE_URL}/Trainer/all-dashboard`,
+  TRAINER_ADD: `${import.meta.env.VITE_API_BASE_URL}/Trainer/add`,
+  TRAINER_EDIT: `${import.meta.env.VITE_API_BASE_URL}/Trainer/edit`,
+  TRAINER_DELETE: `${import.meta.env.VITE_API_BASE_URL}/Trainer/delete`,
+  PACKAGE_ALL: `${import.meta.env.VITE_API_BASE_URL}/Package/all-dashboard`,
+  PACKAGE_ADD: `${import.meta.env.VITE_API_BASE_URL}/Package/add`,
+  PACKAGE_EDIT: `${import.meta.env.VITE_API_BASE_URL}/Package/edit`,
+  PACKAGE_DELETE: `${import.meta.env.VITE_API_BASE_URL}/Package/delete`
 };
 
 // ==========================
@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("addTrainerBtn").addEventListener("click", () => {
     editTrainerId = null;
     trainerForm.reset();
+    trainerImageInput.setAttribute("required", "true");
     trainerModal.show();
   });
 
@@ -202,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${t.major}</td>
         <td><span style="margin-right:5px;">${rating}</span>
         <span class="stars" style="color: gold;">${stars}</span></td>
+        <td>${t.reservationCount}</td>
         <td>
           <button class="btn btn-sm btn-warning edit-btn">✏️</button>
           <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
@@ -281,12 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const t = trainers.find((tr) => tr.id === id);
     if (!t) return Swal.fire("خطأ", "Trainer not found", "error");
 
+    trainerImageInput.removeAttribute("required");
     arabicNameInput.value = t.arabicName ?? "";
     englishNameInput.value = t.englishName ?? "";
     majorInput.value = t.major ?? "";
     specilizationInput.value = t.specilization ?? "";
     trainerImageInput.value = "";
-
     trainerModal._element.querySelector(".modal-title").innerText =
       "تعديل مدرب";
     trainerModal.show();
@@ -343,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addPackageBtn.addEventListener("click", () => {
     editPackageId = null;
     packageForm.reset();
+    packageImageInput.setAttribute("required", "true");
     packageModal.show();
   });
 
@@ -376,6 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${pkg.title}</td>
         <td>${pkg.description}</td>
         <td>${pkg.price}</td>
+        <td>${pkg.orderCount}</td>
         <td>
           <button class="btn btn-sm btn-warning edit-btn">✏️</button>
           <button class="btn btn-sm btn-danger delete-btn">🗑️</button>
@@ -457,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
     editPackageId = id;
     const pkg = packages.find((p) => p.id == id);
     if (!pkg) return Swal.fire("خطأ", "Package not found", "error");
-
+    packageImageInput.removeAttribute("required");
     packageIdInput.value = pkg.id;
     packageNameInput.value = pkg.title;
     descriptionInput.value = pkg.description;

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   // API Configuration
   const API_CONFIG = {
-    TRAINER_ALL: 'http://localhost:5184/api/Trainer/all',
-    TRAINER_RATE: 'http://localhost:5184/api/Trainer/rate'
+    TRAINER_ALL: `${import.meta.env.VITE_API_BASE_URL}/Trainer/all`,
+    TRAINER_RATE: `${import.meta.env.VITE_API_BASE_URL}/Trainer/rate`
   };
 
   const grid = document.querySelector(".counselors-grid");
