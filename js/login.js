@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 document.addEventListener("DOMContentLoaded", () => {
     // API Configuration
