@@ -155,6 +155,9 @@ document.addEventListener("click", (e) => {
   fetchTrainers();
 });
 
+window.makeAppiontment = function() {
+  window.location.href = "form.html?trainer=specialist";
+}
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("package-btn")) {

@@ -11,13 +11,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const trainerId = localStorage.getItem("selectedTrainerId");
   const trainerName = localStorage.getItem("selectedTrainerName");
 
-  console.log("TrainerId:", trainerId);
-  console.log("TrainerName:", trainerName);
-
+  const urlParams = new URLSearchParams(window.location.search);
+  const trainerValue = urlParams.get('trainer');
   const trainerInput = document.getElementById("trainerId");
   const submitBtn = document.getElementById("submitReservation");
 
   if (!trainerInput || !submitBtn) return;
+
+  if (trainerValue === 'specialist') {
+    trainerInput.value = "اخصائي";
+    trainerInput.readOnly = true; 
+    submitBtn.disabled = false;
+    return;
+  }
+
+  console.log("TrainerId:", trainerId);
+  console.log("TrainerName:", trainerName);
+
+
 
   if (!trainerId || !trainerName) {
     // Don't show error on page load, just disable the button
