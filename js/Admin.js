@@ -1,16 +1,16 @@
-
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 // API Configuration
 const API_CONFIG = {
-  DASHBOARD: `${import.meta.env.VITE_API_BASE_URL}/Dashboard`,
-  AUTH_REGISTER: `${import.meta.env.VITE_API_BASE_URL}/Auth/register`,
-  TRAINER_ALL: `${import.meta.env.VITE_API_BASE_URL}/Trainer/all-dashboard`,
-  TRAINER_ADD: `${import.meta.env.VITE_API_BASE_URL}/Trainer/add`,
-  TRAINER_EDIT: `${import.meta.env.VITE_API_BASE_URL}/Trainer/edit`,
-  TRAINER_DELETE: `${import.meta.env.VITE_API_BASE_URL}/Trainer/delete`,
-  PACKAGE_ALL: `${import.meta.env.VITE_API_BASE_URL}/Package/all-dashboard`,
-  PACKAGE_ADD: `${import.meta.env.VITE_API_BASE_URL}/Package/add`,
-  PACKAGE_EDIT: `${import.meta.env.VITE_API_BASE_URL}/Package/edit`,
-  PACKAGE_DELETE: `${import.meta.env.VITE_API_BASE_URL}/Package/delete`
+  DASHBOARD: `${API_BASE_URL}/Dashboard`,
+  AUTH_REGISTER: `${API_BASE_URL}/Auth/register`,
+  TRAINER_ALL: `${API_BASE_URL}/Trainer/all-dashboard`,
+  TRAINER_ADD: `${API_BASE_URL}/Trainer/add`,
+  TRAINER_EDIT: `${API_BASE_URL}/Trainer/edit`,
+  TRAINER_DELETE: `${API_BASE_URL}/Trainer/delete`,
+  PACKAGE_ALL: `${API_BASE_URL}/Package/all-dashboard`,
+  PACKAGE_ADD: `${API_BASE_URL}/Package/add`,
+  PACKAGE_EDIT: `${API_BASE_URL}/Package/edit`,
+  PACKAGE_DELETE: `${API_BASE_URL}/Package/delete`
 };
 
 // ==========================

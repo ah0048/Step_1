@@ -1,8 +1,9 @@
 import Swal from 'sweetalert2';
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 document.addEventListener("DOMContentLoaded", () => {
     // API Configuration
     const API_CONFIG = {
-        AUTH_LOGIN: `${import.meta.env.VITE_API_BASE_URL}/Auth/login`
+        AUTH_LOGIN: `${API_BASE_URL}/Auth/login`
     };
 
     const form = document.getElementById("loginForm");

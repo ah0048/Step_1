@@ -1,7 +1,8 @@
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 document.addEventListener("DOMContentLoaded", async () => {
   // API Configuration
   const API_CONFIG = {
-    PACKAGE_ALL: `${import.meta.env.VITE_API_BASE_URL}/Package/all`
+    PACKAGE_ALL: `${API_BASE_URL}/Package/all`
   };
 
   const storeContainer = document.getElementById("storePackages");

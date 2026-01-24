@@ -1,8 +1,9 @@
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 document.addEventListener("DOMContentLoaded", () => {
   // API Configuration
   const API_CONFIG = {
-    TRAINER_ALL: `${import.meta.env.VITE_API_BASE_URL}/Trainer/all`,
-    TRAINER_RATE: `${import.meta.env.VITE_API_BASE_URL}/Trainer/rate`
+    TRAINER_ALL: `${API_BASE_URL}/Trainer/all`,
+    TRAINER_RATE: `${API_BASE_URL}/Trainer/rate`
   };
 
   const grid = document.querySelector(".counselors-grid");

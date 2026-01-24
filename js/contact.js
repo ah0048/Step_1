@@ -1,7 +1,8 @@
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 document.addEventListener("DOMContentLoaded", () => {
   // API Configuration
   const API_CONFIG = {
-    PACKAGE_PLACE_ORDER: `${import.meta.env.VITE_API_BASE_URL}/Package/place-order`
+    PACKAGE_PLACE_ORDER: `${API_BASE_URL}/Package/place-order`
   };
 
   const packageId = localStorage.getItem("selectedPackageId");

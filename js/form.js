@@ -1,10 +1,10 @@
-
+const API_BASE_URL = 'https://step-1-academy.runasp.net/api';
 
 
 
 // API Configuration
 const API_CONFIG = {
-  RESERVATION_ADD: `${import.meta.env.VITE_API_BASE_URL}/Reservation/add`
+  RESERVATION_ADD: `${API_BASE_URL}/Reservation/add`
 };
 
 document.addEventListener("DOMContentLoaded", () => {
